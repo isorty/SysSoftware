@@ -31,7 +31,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.loginTextBox = new System.Windows.Forms.TextBox();
-            this.hashTextBox = new System.Windows.Forms.TextBox();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -65,12 +65,12 @@
             this.loginTextBox.Size = new System.Drawing.Size(100, 20);
             this.loginTextBox.TabIndex = 2;
             // 
-            // hashTextBox
+            // passwordTextBox
             // 
-            this.hashTextBox.Location = new System.Drawing.Point(165, 49);
-            this.hashTextBox.Name = "hashTextBox";
-            this.hashTextBox.Size = new System.Drawing.Size(100, 20);
-            this.hashTextBox.TabIndex = 3;
+            this.passwordTextBox.Location = new System.Drawing.Point(165, 49);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
+            this.passwordTextBox.TabIndex = 3;
             // 
             // emailTextBox
             // 
@@ -95,9 +95,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(13, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 20);
+            this.label2.Size = new System.Drawing.Size(71, 20);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Хэш-код пароля:";
+            this.label2.Text = "Пароль:";
             // 
             // label3
             // 
@@ -118,7 +118,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.emailTextBox);
-            this.Controls.Add(this.hashTextBox);
+            this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.loginTextBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -137,7 +137,7 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox loginTextBox;
-        private System.Windows.Forms.TextBox hashTextBox;
+        private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

@@ -19,10 +19,10 @@ namespace SysSoftware.Views
             set { loginTextBox.Text = value; }
         }
 
-        public string HashPassword
+        public string Password
         {
-            get { return hashTextBox.Text; }
-            set { hashTextBox.Text = value; }
+            get { return passwordTextBox.Text; }
+            set { passwordTextBox.Text = value; }
         }
 
         public string Email
@@ -37,11 +37,11 @@ namespace SysSoftware.Views
             InitializeComponent();
         }
 
-        public NewRecordForm(string login, string hashPassword, string email)
+        public NewRecordForm(string login, string password, string email)
         {
             OK = false;
             Login = login;
-            HashPassword = hashPassword;
+            Password = password;
             Email = email;
             InitializeComponent();
         }
