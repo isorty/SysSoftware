@@ -12,7 +12,7 @@ namespace SysSoftware.Model.DataBaseModule
 
         public AccessInfoRecord() { }
 
-        public AccessInfoRecord(string login, string hashPassword, string email) : base(login, hashPassword, email) { }
+        public AccessInfoRecord(string login, string password, string email) : base(login, password, email) { }
       
     }
 }

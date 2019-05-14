@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 
 namespace SysSoftware.Model
 {
@@ -17,10 +13,15 @@ namespace SysSoftware.Model
 
         public JSONFileRecord() { }
 
-        public JSONFileRecord(string login, string hashPassword, string email)
+        public JSONFileRecord(string login, string password, string email)
         {
+            byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+
+            System.Text.StringBuilder sBuilder = new System.Text.StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+                sBuilder.Append(data[i].ToString("x2"));
             Login = login;
-            HashPassword = hashPassword;
+            HashPassword = sBuilder.ToString();
             Email = email;
         }
     }
