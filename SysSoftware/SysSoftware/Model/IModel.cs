@@ -15,7 +15,7 @@ namespace SysSoftware.Model
         DataList GetFileInfo();
         void SaveAccessInfo(DataList dataList);
         void SaveFileInfo(DataList dataList);
-        BinaryFileRecord GetFileInfo(string path);
+        FileInfoRecord GetFileInfo(string path);
         string AnalyzeFor(string construction);
         string AnalyzeDoWhile(string construction);
     }

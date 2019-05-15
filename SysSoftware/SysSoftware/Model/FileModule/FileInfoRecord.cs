@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SysSoftware.Model
 {
-    public class BinaryFileRecord : IRecord
+    public class FileInfoRecord : IRecord
     {
         public string Path { get; set; }
 
@@ -14,9 +14,9 @@ namespace SysSoftware.Model
 
         public string CreationDate { get; set; }
 
-        public BinaryFileRecord() { }
+        public FileInfoRecord() { }
 
-        public BinaryFileRecord(string path, double size, string creationDate)
+        public FileInfoRecord(string path, double size, string creationDate)
         {
             Path = path;
             Size = size;

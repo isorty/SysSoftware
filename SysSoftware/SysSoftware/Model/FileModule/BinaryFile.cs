@@ -11,7 +11,7 @@ namespace SysSoftware.Model
             {
                 for (int i = 0; i < dataList.Count; i++)
                 {
-                    BinaryFileRecord record = (BinaryFileRecord)dataList[i];
+                    FileInfoRecord record = (FileInfoRecord)dataList[i];
                     binaryWriter.Write(record.Path);
                     binaryWriter.Write(record.Size);
                     binaryWriter.Write(record.CreationDate);
@@ -27,7 +27,7 @@ namespace SysSoftware.Model
             {               
                 while (binaryReader.BaseStream.Position != binaryReader.BaseStream.Length)
                 {
-                    var record = new BinaryFileRecord(binaryReader.ReadString(), binaryReader.ReadDouble(), binaryReader.ReadString());
+                    var record = new FileInfoRecord(binaryReader.ReadString(), binaryReader.ReadDouble(), binaryReader.ReadString());
                     dataList.Add(record);
                 }
             }

@@ -52,8 +52,8 @@ namespace SysSoftware.Model
             {
                 var records = db.AccessInfoRecords;
                 if (records != null)
-                    foreach (AccessInfoRecord record in records)
-                        dataList.Add(new JSONFileRecord(record.Login, record.HashPassword, record.Email));
+                    foreach (BdAccessInfoRecord record in records)
+                        dataList.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
             }
             return dataList;
         }
@@ -65,8 +65,8 @@ namespace SysSoftware.Model
             {
                 var records = db.FileInfoRecords;
                 if (records != null)
-                    foreach (FileInfoRecord record in records)
-                        dataList.Add(new BinaryFileRecord(record.Path, record.Size, record.CreationDate));
+                    foreach (BdFileInfoRecord record in records)
+                        dataList.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
             }
             return dataList;
         }
@@ -76,8 +76,8 @@ namespace SysSoftware.Model
             using (AccessInfoContext db = new AccessInfoContext())
             {
                 if (dataList.Records != null)
-                    foreach (JSONFileRecord record in dataList.Records)
-                        db.AccessInfoRecords.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                    foreach (AccessInfoRecord record in dataList.Records)
+                        db.AccessInfoRecords.Add(new BdAccessInfoRecord(record.Login, record.HashPassword, record.Email));
                 db.SaveChanges();
             }
         }
@@ -87,17 +87,17 @@ namespace SysSoftware.Model
             using (FileInfoContext db = new FileInfoContext())
             {
                 if (dataList.Records != null)
-                    foreach (BinaryFileRecord record in dataList.Records)
+                    foreach (FileInfoRecord record in dataList.Records)
                         if (record != null)
-                            db.FileInfoRecords.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
+                            db.FileInfoRecords.Add(new BdFileInfoRecord(record.Path, record.Size, record.CreationDate));
                 db.SaveChanges();
             }
         }
 
-        public BinaryFileRecord GetFileInfo(string path)
+        public FileInfoRecord GetFileInfo(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
-            return new BinaryFileRecord(path, fileInfo.Length, fileInfo.CreationTime.ToString());
+            return new FileInfoRecord(path, fileInfo.Length, fileInfo.CreationTime.ToString());
         }
 
         public string AnalyzeFor(string construction)

@@ -30,9 +30,9 @@ namespace SysSoftware.Model
                 List<IRecord> dataList = new List<IRecord>();
                 reader = new StreamReader(filePath);
                 var fileContents = reader.ReadToEnd();
-                List<JSONFileRecord> jsonFileRecord = JsonConvert.DeserializeObject<List<JSONFileRecord>>(fileContents);
+                List<AccessInfoRecord> jsonFileRecord = JsonConvert.DeserializeObject<List<AccessInfoRecord>>(fileContents);
                 if (jsonFileRecord != null)
-                    foreach (JSONFileRecord record in jsonFileRecord)
+                    foreach (AccessInfoRecord record in jsonFileRecord)
                         dataList.Add(record);
                 return dataList;
             }

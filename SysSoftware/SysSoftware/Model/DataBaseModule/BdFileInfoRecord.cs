@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SysSoftware.Model.DataBaseModule
 {
-    class FileInfoRecord : BinaryFileRecord
+    class BdFileInfoRecord : FileInfoRecord
     {
         public int Id { get; set; }
 
-        public FileInfoRecord() { }
+        public BdFileInfoRecord() { }
 
-        public FileInfoRecord(string path, double size, string creationDate) : base(path, size, creationDate) { }
+        public BdFileInfoRecord(string path, double size, string creationDate) : base(path, size, creationDate) { }
 
     }
 }

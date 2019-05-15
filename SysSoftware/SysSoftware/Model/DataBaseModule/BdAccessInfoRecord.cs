@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SysSoftware.Model.DataBaseModule
 {
-    class AccessInfoRecord : JSONFileRecord
+    class BdAccessInfoRecord : AccessInfoRecord
     {
         public int Id { get; set; }
 
-        public AccessInfoRecord() { }
+        public BdAccessInfoRecord() { }
 
-        public AccessInfoRecord(string login, string password, string email) : base(login, password, email) { }
+        public BdAccessInfoRecord(string login, string password, string email) : base(login, password, email) { }
       
     }
 }

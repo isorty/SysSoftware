@@ -2,7 +2,7 @@
 
 namespace SysSoftware.Model
 {
-    public class JSONFileRecord : IRecord
+    public class AccessInfoRecord : IRecord
     {
 
         public string Login { get; set; }
@@ -11,9 +11,9 @@ namespace SysSoftware.Model
 
         public string Email { get; set; }
 
-        public JSONFileRecord() { }
+        public AccessInfoRecord() { }
 
-        public JSONFileRecord(string login, string password, string email)
+        public AccessInfoRecord(string login, string password, string email)
         {
             byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 

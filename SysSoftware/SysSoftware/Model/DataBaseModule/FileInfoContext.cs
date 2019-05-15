@@ -4,7 +4,7 @@ namespace SysSoftware.Model.DataBaseModule
 {
     class FileInfoContext : DbContext
     {
-        public DbSet<FileInfoRecord> FileInfoRecords { get; set; }
+        public DbSet<BdFileInfoRecord> FileInfoRecords { get; set; }
 
         public FileInfoContext() : base("DbConnection") { }
     }

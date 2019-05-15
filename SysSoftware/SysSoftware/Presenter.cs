@@ -196,7 +196,7 @@ namespace SysSoftware
                 newRecordForm.ShowDialog();
                 if (newRecordForm.OK)
                 {
-                    var record = new JSONFileRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
+                    var record = new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
                     dataList.Add(record);
                     bindingList.Add(record);
                     _view.TableUpdate(bindingList);
@@ -248,7 +248,7 @@ namespace SysSoftware
                     newRecordForm.ShowDialog();
                     if (newRecordForm.OK)
                     {
-                        var record = new JSONFileRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
+                        var record = new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
                         dataList.ChangeAt(number, record);
                         bindingList.RemoveAt(number);
                         bindingList.Insert(number, record);

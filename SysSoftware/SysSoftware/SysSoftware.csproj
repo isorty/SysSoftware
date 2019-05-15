@@ -63,9 +63,9 @@
     <Compile Include="Model\Analyzers\AnalysisResult.cs" />
     <Compile Include="Model\Analyzers\Analyzer_for.cs" />
     <Compile Include="Model\AssemblyFunctions\GenerateDLL.cs" />
-    <Compile Include="Model\DataBaseModule\AccessInfoRecord.cs" />
+    <Compile Include="Model\DataBaseModule\BdAccessInfoRecord.cs" />
     <Compile Include="Model\DataBaseModule\AccessInfoContext.cs" />
-    <Compile Include="Model\DataBaseModule\FileInfoRecord.cs" />
+    <Compile Include="Model\DataBaseModule\BdFileInfoRecord.cs" />
     <Compile Include="Model\DataBaseModule\FileInfoContext.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainForm.cs">
@@ -75,12 +75,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\FileModule\BinaryFile.cs" />
-    <Compile Include="Model\FileModule\BinaryFileRecord.cs" />
+    <Compile Include="Model\FileModule\FileInfoRecord.cs" />
     <Compile Include="Model\FileModule\DataList.cs" />
     <Compile Include="Model\FileModule\IFile.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\FileModule\JSONFile.cs" />
-    <Compile Include="Model\FileModule\JSONFileRecord.cs" />
+    <Compile Include="Model\FileModule\AccessInfoRecord.cs" />
     <Compile Include="Model\FileModule\IRecord.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Presenter.cs" />
