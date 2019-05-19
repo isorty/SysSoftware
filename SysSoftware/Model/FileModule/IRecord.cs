@@ -1,4 +1,4 @@
-﻿namespace SysSoftware.Model
+﻿namespace Model.FileModule
 {
     public interface IRecord { }
 }

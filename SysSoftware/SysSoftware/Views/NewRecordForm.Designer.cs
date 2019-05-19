@@ -1,4 +1,4 @@
-﻿namespace SysSoftware.Views
+﻿namespace SysSoftware
 {
     partial class NewRecordForm
     {

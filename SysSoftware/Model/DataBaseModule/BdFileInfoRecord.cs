@@ -1,4 +1,6 @@
-﻿namespace SysSoftware.Model.DataBaseModule
+﻿using Model.FileModule;
+
+namespace Model.DataBaseModule
 {
     class BdFileInfoRecord : FileInfoRecord
     {

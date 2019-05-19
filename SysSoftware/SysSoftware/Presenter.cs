@@ -14,7 +14,7 @@ namespace SysSoftware
         private bool IsBdJsonOpened = false;
         //private bool IsSaved = true;
         private string currentPath = null;
-        Model.DataList dataList = new Model.DataList();
+        DataList dataList = new DataList();
         BindingList<object> bindingList = new BindingList<object>();             
 
         private void CreateBinaryFile()
@@ -186,11 +186,11 @@ namespace SysSoftware
             }
             if (IsJSONFileOpened | IsBdJsonOpened)
             {
-                Views.NewRecordForm newRecordForm = new Views.NewRecordForm();
+                NewRecordForm newRecordForm = new NewRecordForm();
                 newRecordForm.ShowDialog();
                 if (newRecordForm.OK)
                 {
-                    var record = new AccessInfoRecord(newRecordForm.Login, _model.GetHash(newRecordForm.Password), newRecordForm.Email);
+                    var record = new AccessInfoRecord(newRecordForm.Login, _model.GetMD5(newRecordForm.Password), newRecordForm.Email);
                     AddRecordProcess(record);
                 }
                 newRecordForm.Dispose();
@@ -237,7 +237,7 @@ namespace SysSoftware
                 }
                 if (IsJSONFileOpened | IsBdJsonOpened)
                 {
-                    Views.NewRecordForm newRecordForm = new Views.NewRecordForm();
+                    NewRecordForm newRecordForm = new NewRecordForm();
                     newRecordForm.ShowDialog();
                     if (newRecordForm.OK)
                     {

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
-using SysSoftware.Model.DataBaseModule;
+using Model.FileModule;
+using Model.Analyzers;
+using Model.AssemblyFunctions;
+using Model.DataBaseModule;
 
-namespace SysSoftware.Model
+namespace Model
 {
     public class Model : IModel
     {
@@ -77,11 +79,8 @@ namespace SysSoftware.Model
             using (AccessInfoContext db = new AccessInfoContext())
             {
                 if (dataList.Records != null)
-                {
-                    db.AccessInfoRecords.RemoveRange(db.AccessInfoRecords);
                     foreach (AccessInfoRecord record in dataList.Records)
                         db.AccessInfoRecords.Add(new BdAccessInfoRecord(record.Login, record.HashPassword, record.Email));
-                }
                 db.SaveChanges();
             }
         }
@@ -91,12 +90,9 @@ namespace SysSoftware.Model
             using (FileInfoContext db = new FileInfoContext())
             {
                 if (dataList.Records != null)
-                {
-                    db.FileInfoRecords.RemoveRange(db.FileInfoRecords);
                     foreach (FileInfoRecord record in dataList.Records)
                         if (record != null)
                             db.FileInfoRecords.Add(new BdFileInfoRecord(record.Path, record.Size, record.CreationDate));
-                }
                 db.SaveChanges();
             }
         }
@@ -119,7 +115,7 @@ namespace SysSoftware.Model
             return analizator.AnalysisResult();
         }
 
-        public string GetMD5(string password)
+        public string GetHash(string password)
         {
             byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 

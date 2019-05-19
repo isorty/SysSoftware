@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Function
+namespace Model.AssemblyFunctions
 {
     class GenerateDLL
     {
@@ -15,26 +15,26 @@ namespace Function
             AssemblyName name = new AssemblyName(assemblyName);
             AppDomain domain = System.Threading.Thread.GetDomain();
             AssemblyBuilder builder = domain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);
-            ModuleBuilder module = builder.DefineDynamicModule(modName, true);
+            ModuleBuilder module = builder.DefineDynamicModule (modName, true);
             TypeBuilder typeBuilder = module.DefineType(typeName, TypeAttributes.Public);
-            MethodBuilder compareMethodBuilder = typeBuilder.DefineMethod("Compare", MethodAttributes.Public, typeof(bool), new Type[] { typeof(double), typeof(double) });
+            MethodBuilder compareMethodBuilder = typeBuilder.DefineMethod( "Compare", MethodAttributes.Public, typeof(bool), new Type[] { typeof(double), typeof(double) } );
             ILGenerator compareILGenerator = compareMethodBuilder.GetILGenerator();
-            Label met = compareILGenerator.DefineLabel();
+            Label metka = compareILGenerator.DefineLabel();
             compareILGenerator.Emit(OpCodes.Ldarg_1);
             compareILGenerator.Emit(OpCodes.Ldarg_2);
-            compareILGenerator.Emit(OpCodes.Bge_S, met);
+            compareILGenerator.Emit(OpCodes.Bge_S, metka);
             compareILGenerator.Emit(OpCodes.Ldc_I4_1);
             compareILGenerator.Emit(OpCodes.Ret);
-            compareILGenerator.MarkLabel(met);
+            compareILGenerator.MarkLabel(metka);
             compareILGenerator.Emit(OpCodes.Ldc_I4_0);
             compareILGenerator.Emit(OpCodes.Ret);
             MethodBuilder complementMethodBuilder = typeBuilder.DefineMethod("Complement", MethodAttributes.Public, typeof(byte), new Type[] { typeof(byte) });
             ILGenerator complementILGenerator = complementMethodBuilder.GetILGenerator();
             compareILGenerator.Emit(OpCodes.Ldarg_1);
-            compareILGenerator.Emit(OpCodes.Not);
+            compareILGenerator.Emit(OpCodes.Neg);
             compareILGenerator.Emit(OpCodes.Ret);
             typeBuilder.CreateType();
-            builder.Save(assemblyName + ".dll");
+            builder.Save(assemblyName+".dll");
         }
 
         /*double a = 0;

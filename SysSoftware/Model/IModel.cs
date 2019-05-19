@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model.FileModule;
 
-namespace SysSoftware.Model
+namespace Model
 {
     public interface IModel
     {
@@ -18,6 +14,6 @@ namespace SysSoftware.Model
         FileInfoRecord GetFileInfo(string path);
         string AnalyzeFor(string construction);
         string AnalyzeDoWhile(string construction);
-        string GetMD5(string password);
+        string GetHash(string password);
     }
 }
