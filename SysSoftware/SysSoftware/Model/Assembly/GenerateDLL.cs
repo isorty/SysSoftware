@@ -17,7 +17,7 @@ namespace Function
             AssemblyBuilder builder = domain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);
             ModuleBuilder module = builder.DefineDynamicModule(modName, true);
             TypeBuilder typeBuilder = module.DefineType(typeName, TypeAttributes.Public);
-            MethodBuilder compareMethodBuilder = typeBuilder.DefineMethod("Compare", MethodAttributes.Public, typeof(bool), new Type[] { typeof(double), typeof(double) });
+            MethodBuilder compareMethodBuilder = typeBuilder.DefineMethod("Compare", MethodAttributes.Public, typeof(byte), new Type[] { typeof(double), typeof(double) });
             ILGenerator compareILGenerator = compareMethodBuilder.GetILGenerator();
             Label met = compareILGenerator.DefineLabel();
             compareILGenerator.Emit(OpCodes.Ldarg_1);
@@ -28,7 +28,7 @@ namespace Function
             compareILGenerator.MarkLabel(met);
             compareILGenerator.Emit(OpCodes.Ldc_I4_0);
             compareILGenerator.Emit(OpCodes.Ret);
-            MethodBuilder complementMethodBuilder = typeBuilder.DefineMethod("Complement", MethodAttributes.Public, typeof(byte), new Type[] { typeof(byte) });
+            MethodBuilder complementMethodBuilder = typeBuilder.DefineMethod("Complement", MethodAttributes.Public, typeof(uint), new Type[] { typeof(uint) });
             ILGenerator complementILGenerator = complementMethodBuilder.GetILGenerator();
             complementILGenerator.Emit(OpCodes.Ldarg_1);
             complementILGenerator.Emit(OpCodes.Not);

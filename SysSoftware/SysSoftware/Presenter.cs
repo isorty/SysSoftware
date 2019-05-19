@@ -302,9 +302,9 @@ namespace SysSoftware
         {
             try
             {
-                if (_model.AssemblyCompare(_view.GetCompareValues()))
+                if (_model.AssemblyCompare(_view.GetCompareValues()) == 0)
                     _view.SetCompareResult("≥");
-                else
+                if (_model.AssemblyCompare(_view.GetCompareValues()) == 1)
                     _view.SetCompareResult("<");
             }
             catch (InvalidInputDataException e)
@@ -316,7 +316,6 @@ namespace SysSoftware
 
         public void Run()
         {
-            //Function.GenerateDLL.Generate();
             _view.Show();
         }
 

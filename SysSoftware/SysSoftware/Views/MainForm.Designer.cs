@@ -76,6 +76,7 @@
             this.resultLabel = new System.Windows.Forms.Label();
             this.execComplement = new System.Windows.Forms.Button();
             this.formatBox = new System.Windows.Forms.GroupBox();
+            this.decRadioButton = new System.Windows.Forms.RadioButton();
             this.hexRadioButton = new System.Windows.Forms.RadioButton();
             this.binRadioButton = new System.Windows.Forms.RadioButton();
             this.complementValue = new System.Windows.Forms.TextBox();
@@ -84,7 +85,6 @@
             this.statusText = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.decRadioButton = new System.Windows.Forms.RadioButton();
             this.mainMenu.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.analizatorPage.SuspendLayout();
@@ -434,10 +434,8 @@
             this.compareLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.compareLabel.Location = new System.Drawing.Point(117, 52);
             this.compareLabel.Name = "compareLabel";
-            this.compareLabel.Size = new System.Drawing.Size(14, 15);
+            this.compareLabel.Size = new System.Drawing.Size(0, 15);
             this.compareLabel.TabIndex = 8;
-            this.compareLabel.Text = "≥";
-            this.compareLabel.Visible = false;
             // 
             // label2
             // 
@@ -503,7 +501,7 @@
             this.complementResultText.MaxLength = 32768;
             this.complementResultText.Name = "complementResultText";
             this.complementResultText.ReadOnly = true;
-            this.complementResultText.Size = new System.Drawing.Size(118, 20);
+            this.complementResultText.Size = new System.Drawing.Size(200, 20);
             this.complementResultText.TabIndex = 5;
             // 
             // resultLabel
@@ -536,6 +534,17 @@
             this.formatBox.TabIndex = 2;
             this.formatBox.TabStop = false;
             this.formatBox.Text = "Формат данных результата";
+            // 
+            // decRadioButton
+            // 
+            this.decRadioButton.AutoSize = true;
+            this.decRadioButton.Location = new System.Drawing.Point(7, 44);
+            this.decRadioButton.Name = "decRadioButton";
+            this.decRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.decRadioButton.TabIndex = 3;
+            this.decRadioButton.TabStop = true;
+            this.decRadioButton.Text = "DEC";
+            this.decRadioButton.UseVisualStyleBackColor = true;
             // 
             // hexRadioButton
             // 
@@ -597,17 +606,6 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
-            // 
-            // decRadioButton
-            // 
-            this.decRadioButton.AutoSize = true;
-            this.decRadioButton.Location = new System.Drawing.Point(7, 44);
-            this.decRadioButton.Name = "decRadioButton";
-            this.decRadioButton.Size = new System.Drawing.Size(47, 17);
-            this.decRadioButton.TabIndex = 3;
-            this.decRadioButton.TabStop = true;
-            this.decRadioButton.Text = "DEC";
-            this.decRadioButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

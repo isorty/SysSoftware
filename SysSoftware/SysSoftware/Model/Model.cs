@@ -113,7 +113,7 @@ namespace SysSoftware.Model
             return sBuilder.ToString();
         }
 
-        public bool AssemblyCompare(params string[] values)
+        public byte AssemblyCompare(params string[] values)
         {
             if (!double.TryParse(values[0], out double firstValue) || !double.TryParse(values[1], out double secondValue))
                 throw new InvalidInputDataException("Неверный формат данных.");
@@ -122,19 +122,19 @@ namespace SysSoftware.Model
             MethodInfo method = t.GetMethod("Compare", BindingFlags.Instance | BindingFlags.Public);
             object instance = Activator.CreateInstance(t);
             //method.Invoke(instance, new object[] { result, firstValue, secondValue });
-            return bool.Parse(method.Invoke(instance, new object[] { firstValue, secondValue }).ToString());
+            return byte.Parse(method.Invoke(instance, new object[] { firstValue, secondValue }).ToString());
         }
 
-        public byte AssemblyComplement(string valueString)
+        public uint AssemblyComplement(string valueString)
         {
-            if (!byte.TryParse(valueString, out byte value))
+            if (!uint.TryParse(valueString, out uint value))
                 throw new InvalidInputDataException("Неверный формат данных.");
             Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
             Type t = asm.GetType("AssemblyModuleDLL");
             MethodInfo method = t.GetMethod("Complement", BindingFlags.Instance | BindingFlags.Public);
             object instance = Activator.CreateInstance(t);
             //method.Invoke(instance, new object[] { value });
-            return byte.Parse(method.Invoke(instance, new object[] { value }).ToString());
+            return uint.Parse(method.Invoke(instance, new object[] { value }).ToString());
         }
     }
 }
