@@ -30,9 +30,9 @@ namespace Function
             compareILGenerator.Emit(OpCodes.Ret);
             MethodBuilder complementMethodBuilder = typeBuilder.DefineMethod("Complement", MethodAttributes.Public, typeof(byte), new Type[] { typeof(byte) });
             ILGenerator complementILGenerator = complementMethodBuilder.GetILGenerator();
-            compareILGenerator.Emit(OpCodes.Ldarg_1);
-            compareILGenerator.Emit(OpCodes.Not);
-            compareILGenerator.Emit(OpCodes.Ret);
+            complementILGenerator.Emit(OpCodes.Ldarg_1);
+            complementILGenerator.Emit(OpCodes.Not);
+            complementILGenerator.Emit(OpCodes.Ret);
             typeBuilder.CreateType();
             builder.Save(assemblyName + ".dll");
         }

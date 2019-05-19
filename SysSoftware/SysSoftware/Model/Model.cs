@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
 using SysSoftware.Model.DataBaseModule;
 
@@ -16,34 +15,18 @@ namespace SysSoftware.Model
         public DataList OpenFile(string path)
         {
             if (path.ToUpper().EndsWith(".BIN"))
-            {
-                DataList datalist = new DataList();
-                BinaryFile binaryFile = new BinaryFile();
-                datalist.Records = binaryFile.Read(path);
-                return datalist;
-            }
+                return new DataList { Records = new BinaryFile().Read(path) };
             else if (path.ToUpper().EndsWith(".JSON"))
-            {
-                DataList datalist = new DataList();
-                JSONFile jsonFile = new JSONFile();
-                datalist.Records = jsonFile.Read(path);
-                return datalist;
-            }
+                return new DataList { Records = new JSONFile().Read(path) };
             else return null;
         }
 
         public void SaveFile(string path, DataList dataList)
         {
             if (path.ToUpper().EndsWith(".BIN"))
-            {
-                BinaryFile binaryFile = new BinaryFile();
-                binaryFile.Write(path, dataList.Records);
-            }
+                new BinaryFile().Write(path, dataList.Records);
             else if (path.ToUpper().EndsWith(".JSON"))
-            {
-                JSONFile jsonFile = new JSONFile();
-                jsonFile.Write(path, dataList.Records);
-            }
+                new JSONFile().Write(path, dataList.Records);
         }
 
         public DataList GetAccessInfo()
@@ -122,11 +105,20 @@ namespace SysSoftware.Model
         public string GetMD5(string password)
         {
             byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-
             System.Text.StringBuilder sBuilder = new System.Text.StringBuilder();
             for (int i = 0; i < data.Length; i++)
                 sBuilder.Append(data[i].ToString("x2"));
             return sBuilder.ToString();
+        }
+
+        public bool AssemblyCompare(string firstValue, string secondValue)
+        {
+            return false;
+        }
+
+        public void AssemblyComplement(string value)
+        {
+
         }
     }
 }

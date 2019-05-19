@@ -19,5 +19,7 @@ namespace SysSoftware.Model
         string AnalyzeFor(string construction);
         string AnalyzeDoWhile(string construction);
         string GetMD5(string password);
+        bool AssemblyCompare(string firstValue, string secondValue);
+        void AssemblyComplement(string value);
     }
 }
