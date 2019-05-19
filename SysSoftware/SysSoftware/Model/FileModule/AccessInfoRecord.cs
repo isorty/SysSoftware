@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace SysSoftware.Model
+﻿namespace SysSoftware.Model
 {
     public class AccessInfoRecord : IRecord
     {
@@ -13,15 +11,10 @@ namespace SysSoftware.Model
 
         public AccessInfoRecord() { }
 
-        public AccessInfoRecord(string login, string password, string email)
-        {
-            byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-
-            System.Text.StringBuilder sBuilder = new System.Text.StringBuilder();
-            for (int i = 0; i < data.Length; i++)
-                sBuilder.Append(data[i].ToString("x2"));
+        public AccessInfoRecord(string login, string hashPassword, string email)
+        {           
             Login = login;
-            HashPassword = sBuilder.ToString();
+            HashPassword = hashPassword;
             Email = email;
         }
     }

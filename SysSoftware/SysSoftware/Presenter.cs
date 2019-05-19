@@ -25,7 +25,7 @@ namespace SysSoftware
                 IsBinaryFileOpened = true;
                 IsJSONFileOpened = false;
                 _model.CreateFile(path);
-                OpenFileProccess(path);
+                OpenFileProcess(path);
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Создан файл " + path);
             }
         }
@@ -38,7 +38,7 @@ namespace SysSoftware
                 IsBinaryFileOpened = false;
                 IsJSONFileOpened = true;
                 _model.CreateFile(path);
-                OpenFileProccess(path);
+                OpenFileProcess(path);
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Создан файл " + path);
             }
         }
@@ -51,20 +51,18 @@ namespace SysSoftware
                 currentPath = path;
                 IsBinaryFileOpened = true;
                 IsJSONFileOpened = false;
-                OpenFileProccess(path);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Открыт файл " + path);
+                OpenFileProcess(path);
             }
             else if (path != null && path.ToUpper().EndsWith("JSON"))
             {
                 currentPath = path;
                 IsBinaryFileOpened = false;
                 IsJSONFileOpened = true;
-                OpenFileProccess(path);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Открыт файл " + path);
+                OpenFileProcess(path);
             }
         }
 
-        private void OpenFileProccess(string path)
+        private void OpenFileProcess(string path)
         {
             bindingList.Clear();
             _view.TableClear();
@@ -76,6 +74,7 @@ namespace SysSoftware
             _view.SaveAsEnable(true);
             _view.CloseEnable(true);
             _view.ExportEnable(true);
+            _view.ChangeStatus(System.DateTime.Now.ToString() + " Открыт файл " + path);
         }
 
         private void SaveFile()
@@ -182,12 +181,7 @@ namespace SysSoftware
                 if (path != null)
                 {
                     var record = _model.GetFileInfo(path);
-                    dataList.Add(record);
-                    bindingList.Add(record);
-                    _view.TableUpdate(bindingList);
-                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись добавлена");
-                    _view.SaveEnable(true);
-                    _view.ExportEnable(true);
+                    AddRecordProcess(record);
                 }
             }
             if (IsJSONFileOpened | IsBdJsonOpened)
@@ -196,16 +190,21 @@ namespace SysSoftware
                 newRecordForm.ShowDialog();
                 if (newRecordForm.OK)
                 {
-                    var record = new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
-                    dataList.Add(record);
-                    bindingList.Add(record);
-                    _view.TableUpdate(bindingList);
-                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись добавлена");
-                    _view.SaveEnable(true);
-                    _view.ExportEnable(true);
+                    var record = new AccessInfoRecord(newRecordForm.Login, _model.GetHash(newRecordForm.Password), newRecordForm.Email);
+                    AddRecordProcess(record);
                 }
                 newRecordForm.Dispose();
             }
+        }
+
+        private void AddRecordProcess(IRecord record)
+        {
+            dataList.Add(record);
+            bindingList.Add(record);
+            _view.TableUpdate(bindingList);
+            _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись добавлена");
+            _view.SaveEnable(true);
+            _view.ExportEnable(true);
         }
 
         private void DeleteRecord()
@@ -233,13 +232,7 @@ namespace SysSoftware
                     if (path != null)
                     {
                         var record = _model.GetFileInfo(path);
-                        dataList.ChangeAt(number, record);
-                        bindingList.RemoveAt(number);
-                        bindingList.Insert(number, record);
-                        _view.TableUpdate(bindingList);
-                        _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись изменена");
-                        _view.SaveEnable(true);
-                        _view.ExportEnable(true);
+                        ModifyRecordProcess(number, record);
                     }
                 }
                 if (IsJSONFileOpened | IsBdJsonOpened)
@@ -249,17 +242,22 @@ namespace SysSoftware
                     if (newRecordForm.OK)
                     {
                         var record = new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
-                        dataList.ChangeAt(number, record);
-                        bindingList.RemoveAt(number);
-                        bindingList.Insert(number, record);
-                        _view.TableUpdate(bindingList);
-                        _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись изменена");
-                        _view.SaveEnable(true);
-                        _view.ExportEnable(true);
+                        ModifyRecordProcess(number, record);
                     }
                     newRecordForm.Dispose();
                 }
             }
+        }
+
+        private void ModifyRecordProcess(int number, IRecord record)
+        {
+            dataList.ChangeAt(number, record);
+            bindingList.RemoveAt(number);
+            bindingList.Insert(number, record);
+            _view.TableUpdate(bindingList);
+            _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись изменена");
+            _view.SaveEnable(true);
+            _view.ExportEnable(true);
         }
 
         private void Analyze()

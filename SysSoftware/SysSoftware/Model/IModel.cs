@@ -18,5 +18,6 @@ namespace SysSoftware.Model
         FileInfoRecord GetFileInfo(string path);
         string AnalyzeFor(string construction);
         string AnalyzeDoWhile(string construction);
+        string GetHash(string password);
     }
 }

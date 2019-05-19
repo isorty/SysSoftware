@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
 using SysSoftware.Model.DataBaseModule;
 
 namespace SysSoftware.Model
@@ -110,6 +111,16 @@ namespace SysSoftware.Model
         {
             AnalyzerDoWhile analizator = new AnalyzerDoWhile(construction);
             return analizator.AnalysisResult();
+        }
+
+        public string GetHash(string password)
+        {
+            byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+
+            System.Text.StringBuilder sBuilder = new System.Text.StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+                sBuilder.Append(data[i].ToString("x2"));
+            return sBuilder.ToString();
         }
     }
 }
