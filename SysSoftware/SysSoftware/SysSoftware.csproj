@@ -67,8 +67,7 @@
     <Compile Include="Model\DataBaseModule\AccessInfoContext.cs" />
     <Compile Include="Model\DataBaseModule\BdFileInfoRecord.cs" />
     <Compile Include="Model\DataBaseModule\FileInfoContext.cs" />
-    <Compile Include="Model\Exceptions\InvalidEmailAddressException.cs" />
-    <Compile Include="Model\Exceptions\InvalidInputDataException.cs" />
+    <Compile Include="Exceptions\InvalidInputDataException.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>

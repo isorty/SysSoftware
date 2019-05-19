@@ -60,6 +60,12 @@ namespace SysSoftware
                 IsJSONFileOpened = true;
                 OpenFileProcess(path);
             }
+            else ShowError("Неверный формат файла.");
+        }
+
+        private void ShowError(string message)
+        {
+            System.Windows.Forms.MessageBox.Show(message, "Ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
 
         private void OpenFileProcess(string path)
@@ -160,6 +166,10 @@ namespace SysSoftware
 
         private void GetFileInfo()
         {
+            IsBinaryFileOpened = true;
+            IsBdBinaryOpened = true;
+            IsJSONFileOpened = false;
+            IsBdJsonOpened = false;
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
             bindingList.Clear();
             _view.TableClear();
@@ -179,10 +189,7 @@ namespace SysSoftware
             {
                 var path = _view.GetOpenPath("Выбрать файл");
                 if (path != null)
-                {
-                    var record = _model.GetFileInfo(path);
-                    AddRecordProcess(record);
-                }
+                    AddRecordProcess(_model.GetFileInfo(path));
             }
             if (IsJSONFileOpened | IsBdJsonOpened)
             {
@@ -190,8 +197,10 @@ namespace SysSoftware
                 newRecordForm.ShowDialog();
                 if (newRecordForm.OK)
                 {
-                    var record = new AccessInfoRecord(newRecordForm.Login, _model.GetMD5(newRecordForm.Password), newRecordForm.Email);
-                    AddRecordProcess(record);
+                    if (IsEmailValid(newRecordForm.Email))
+                        AddRecordProcess(new AccessInfoRecord(newRecordForm.Login, _model.GetMD5(newRecordForm.Password), newRecordForm.Email));
+                    else
+                        ShowError("Некорректный email.");
                 }
                 newRecordForm.Dispose();
             }
@@ -205,6 +214,11 @@ namespace SysSoftware
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись добавлена");
             _view.SaveEnable(true);
             _view.ExportEnable(true);
+        }
+
+        private bool IsEmailValid(string email)
+        {
+            return new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(email);
         }
 
         private void DeleteRecord()
@@ -223,37 +237,31 @@ namespace SysSoftware
 
         private void ModifyRecord()
         {
-            int number = _view.GetRow();
-            if (number != -1)
+            int recordNumber = _view.GetRow();
+            if (recordNumber != -1)
             {
                 if (IsBinaryFileOpened | IsBdBinaryOpened)
                 {
                     var path = _view.GetOpenPath("Выбрать файл");
                     if (path != null)
-                    {
-                        var record = _model.GetFileInfo(path);
-                        ModifyRecordProcess(number, record);
-                    }
+                        ModifyRecordProcess(recordNumber, _model.GetFileInfo(path));
                 }
                 if (IsJSONFileOpened | IsBdJsonOpened)
                 {
                     NewRecordForm newRecordForm = new NewRecordForm();
                     newRecordForm.ShowDialog();
                     if (newRecordForm.OK)
-                    {
-                        var record = new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email);
-                        ModifyRecordProcess(number, record);
-                    }
+                        ModifyRecordProcess(recordNumber, new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email));
                     newRecordForm.Dispose();
                 }
             }
         }
 
-        private void ModifyRecordProcess(int number, IRecord record)
+        private void ModifyRecordProcess(int recordNumber, IRecord record)
         {
-            dataList.ChangeAt(number, record);
-            bindingList.RemoveAt(number);
-            bindingList.Insert(number, record);
+            dataList.ChangeAt(recordNumber, record);
+            bindingList.RemoveAt(recordNumber);
+            bindingList.Insert(recordNumber, record);
             _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись изменена");
             _view.SaveEnable(true);
