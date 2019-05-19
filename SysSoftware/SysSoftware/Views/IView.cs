@@ -19,9 +19,12 @@ namespace SysSoftware
         event Action ModifyRecordClick;
         event Action AnalyzeClick;
         event Action ShowStatusBarClick;
+        event Action ComplementClick;
+        event Action CompareClick;
 
         string GetOpenPath(string title);
         string GetSavePath(string defaultFileName, string defaultExtension, string title);
+
 
         int GetRow();
         void TableClear();
@@ -34,12 +37,19 @@ namespace SysSoftware
 
         bool GetAnalyzer();
         string GetConstruction();
-        void AnalysisResultSet(string result);
+        void SetAnalysisResult(string result);
 
         void SaveEnable(bool state);
         void SaveAsEnable(bool state);
         void CloseEnable(bool state);
         void ExportEnable(bool state);
+
+        int GetNumeralSystem();
+        string GetComplementValue();
+        void SetComplementResult(string complementResult);
+
+        string[] GetCompareValues();
+        void SetCompareResult(string compareResult);
 
         void Show();
     }

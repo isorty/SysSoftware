@@ -43,7 +43,7 @@ namespace Function
         Type t = asm.GetType("AssemblyModuleDLL");
         MethodInfo method = t.GetMethod("AssemblyModule", BindingFlags.Instance | BindingFlags.Public);
         object instance = Activator.CreateInstance(t);
-        method.Invoke(instance, new object[] { a, b   });*/
+        method.Invoke(instance, new object[] { a, b });*/
 
 
     }

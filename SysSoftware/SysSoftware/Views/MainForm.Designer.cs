@@ -65,25 +65,26 @@
             this.table = new System.Windows.Forms.DataGridView();
             this.functionPage = new System.Windows.Forms.TabPage();
             this.compareFunctionBox = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.compareLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.execCompare = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.compareSecondOperand = new System.Windows.Forms.TextBox();
+            this.compareFirstOperand = new System.Windows.Forms.TextBox();
             this.complementFunctionBox = new System.Windows.Forms.GroupBox();
-            this.resultText = new System.Windows.Forms.TextBox();
+            this.complementResultText = new System.Windows.Forms.TextBox();
             this.resultLabel = new System.Windows.Forms.Label();
             this.execComplement = new System.Windows.Forms.Button();
             this.formatBox = new System.Windows.Forms.GroupBox();
             this.hexRadioButton = new System.Windows.Forms.RadioButton();
             this.binRadioButton = new System.Windows.Forms.RadioButton();
-            this.inputDataText = new System.Windows.Forms.TextBox();
+            this.complementValue = new System.Windows.Forms.TextBox();
             this.dataLabel = new System.Windows.Forms.Label();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusText = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.decRadioButton = new System.Windows.Forms.RadioButton();
             this.mainMenu.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.analizatorPage.SuspendLayout();
@@ -414,12 +415,12 @@
             // 
             // compareFunctionBox
             // 
-            this.compareFunctionBox.Controls.Add(this.label3);
+            this.compareFunctionBox.Controls.Add(this.compareLabel);
             this.compareFunctionBox.Controls.Add(this.label2);
             this.compareFunctionBox.Controls.Add(this.label1);
             this.compareFunctionBox.Controls.Add(this.execCompare);
-            this.compareFunctionBox.Controls.Add(this.textBox2);
-            this.compareFunctionBox.Controls.Add(this.textBox1);
+            this.compareFunctionBox.Controls.Add(this.compareSecondOperand);
+            this.compareFunctionBox.Controls.Add(this.compareFirstOperand);
             this.compareFunctionBox.Location = new System.Drawing.Point(260, 7);
             this.compareFunctionBox.Name = "compareFunctionBox";
             this.compareFunctionBox.Size = new System.Drawing.Size(249, 394);
@@ -427,16 +428,16 @@
             this.compareFunctionBox.TabStop = false;
             this.compareFunctionBox.Text = "Сравнение";
             // 
-            // label3
+            // compareLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(117, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "≥";
-            this.label3.Visible = false;
+            this.compareLabel.AutoSize = true;
+            this.compareLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.compareLabel.Location = new System.Drawing.Point(117, 52);
+            this.compareLabel.Name = "compareLabel";
+            this.compareLabel.Size = new System.Drawing.Size(14, 15);
+            this.compareLabel.TabIndex = 8;
+            this.compareLabel.Text = "≥";
+            this.compareLabel.Visible = false;
             // 
             // label2
             // 
@@ -467,27 +468,27 @@
             this.execCompare.Text = "Сравнить";
             this.execCompare.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // compareSecondOperand
             // 
-            this.textBox2.Location = new System.Drawing.Point(143, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.compareSecondOperand.Location = new System.Drawing.Point(143, 50);
+            this.compareSecondOperand.Name = "compareSecondOperand";
+            this.compareSecondOperand.Size = new System.Drawing.Size(100, 20);
+            this.compareSecondOperand.TabIndex = 1;
             // 
-            // textBox1
+            // compareFirstOperand
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.compareFirstOperand.Location = new System.Drawing.Point(7, 50);
+            this.compareFirstOperand.Name = "compareFirstOperand";
+            this.compareFirstOperand.Size = new System.Drawing.Size(100, 20);
+            this.compareFirstOperand.TabIndex = 0;
             // 
             // complementFunctionBox
             // 
-            this.complementFunctionBox.Controls.Add(this.resultText);
+            this.complementFunctionBox.Controls.Add(this.complementResultText);
             this.complementFunctionBox.Controls.Add(this.resultLabel);
             this.complementFunctionBox.Controls.Add(this.execComplement);
             this.complementFunctionBox.Controls.Add(this.formatBox);
-            this.complementFunctionBox.Controls.Add(this.inputDataText);
+            this.complementFunctionBox.Controls.Add(this.complementValue);
             this.complementFunctionBox.Controls.Add(this.dataLabel);
             this.complementFunctionBox.Location = new System.Drawing.Point(7, 7);
             this.complementFunctionBox.Name = "complementFunctionBox";
@@ -496,20 +497,20 @@
             this.complementFunctionBox.TabStop = false;
             this.complementFunctionBox.Text = "Побитовое дополнение";
             // 
-            // resultText
+            // complementResultText
             // 
-            this.resultText.Location = new System.Drawing.Point(7, 246);
-            this.resultText.Name = "resultText";
-            this.resultText.ReadOnly = true;
-            this.resultText.Size = new System.Drawing.Size(118, 20);
-            this.resultText.TabIndex = 5;
-            this.resultText.Text = "8A";
+            this.complementResultText.Location = new System.Drawing.Point(7, 264);
+            this.complementResultText.MaxLength = 32768;
+            this.complementResultText.Name = "complementResultText";
+            this.complementResultText.ReadOnly = true;
+            this.complementResultText.Size = new System.Drawing.Size(118, 20);
+            this.complementResultText.TabIndex = 5;
             // 
             // resultLabel
             // 
             this.resultLabel.AutoSize = true;
             this.resultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.resultLabel.Location = new System.Drawing.Point(7, 227);
+            this.resultLabel.Location = new System.Drawing.Point(7, 245);
             this.resultLabel.Name = "resultLabel";
             this.resultLabel.Size = new System.Drawing.Size(71, 15);
             this.resultLabel.TabIndex = 4;
@@ -517,7 +518,7 @@
             // 
             // execComplement
             // 
-            this.execComplement.Location = new System.Drawing.Point(10, 183);
+            this.execComplement.Location = new System.Drawing.Point(10, 201);
             this.execComplement.Name = "execComplement";
             this.execComplement.Size = new System.Drawing.Size(75, 23);
             this.execComplement.TabIndex = 3;
@@ -526,11 +527,12 @@
             // 
             // formatBox
             // 
+            this.formatBox.Controls.Add(this.decRadioButton);
             this.formatBox.Controls.Add(this.hexRadioButton);
             this.formatBox.Controls.Add(this.binRadioButton);
             this.formatBox.Location = new System.Drawing.Point(10, 91);
             this.formatBox.Name = "formatBox";
-            this.formatBox.Size = new System.Drawing.Size(164, 71);
+            this.formatBox.Size = new System.Drawing.Size(164, 94);
             this.formatBox.TabIndex = 2;
             this.formatBox.TabStop = false;
             this.formatBox.Text = "Формат данных результата";
@@ -539,7 +541,7 @@
             // 
             this.hexRadioButton.AutoSize = true;
             this.hexRadioButton.Checked = true;
-            this.hexRadioButton.Location = new System.Drawing.Point(7, 43);
+            this.hexRadioButton.Location = new System.Drawing.Point(7, 67);
             this.hexRadioButton.Name = "hexRadioButton";
             this.hexRadioButton.Size = new System.Drawing.Size(47, 17);
             this.hexRadioButton.TabIndex = 2;
@@ -557,14 +559,13 @@
             this.binRadioButton.Text = "BIN";
             this.binRadioButton.UseVisualStyleBackColor = true;
             // 
-            // inputDataText
+            // complementValue
             // 
-            this.inputDataText.Location = new System.Drawing.Point(10, 50);
-            this.inputDataText.MaxLength = 8;
-            this.inputDataText.Name = "inputDataText";
-            this.inputDataText.Size = new System.Drawing.Size(118, 20);
-            this.inputDataText.TabIndex = 1;
-            this.inputDataText.Text = "10011001";
+            this.complementValue.Location = new System.Drawing.Point(10, 50);
+            this.complementValue.Name = "complementValue";
+            this.complementValue.Size = new System.Drawing.Size(118, 20);
+            this.complementValue.TabIndex = 1;
+            this.complementValue.Text = "10011001";
             // 
             // dataLabel
             // 
@@ -596,6 +597,17 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // decRadioButton
+            // 
+            this.decRadioButton.AutoSize = true;
+            this.decRadioButton.Location = new System.Drawing.Point(7, 44);
+            this.decRadioButton.Name = "decRadioButton";
+            this.decRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.decRadioButton.TabIndex = 3;
+            this.decRadioButton.TabStop = true;
+            this.decRadioButton.Text = "DEC";
+            this.decRadioButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -660,12 +672,12 @@
         private System.Windows.Forms.Button addRecord;
         private System.Windows.Forms.DataGridView table;
         private System.Windows.Forms.GroupBox complementFunctionBox;
-        private System.Windows.Forms.TextBox inputDataText;
+        private System.Windows.Forms.TextBox complementValue;
         private System.Windows.Forms.Label dataLabel;
         private System.Windows.Forms.GroupBox formatBox;
         private System.Windows.Forms.RadioButton hexRadioButton;
         private System.Windows.Forms.RadioButton binRadioButton;
-        private System.Windows.Forms.TextBox resultText;
+        private System.Windows.Forms.TextBox complementResultText;
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.Button execComplement;
         private System.Windows.Forms.ToolStripMenuItem createBinaryFileMenu;
@@ -686,11 +698,12 @@
         private System.Windows.Forms.ToolStripMenuItem saveInfoMenu;
         private System.Windows.Forms.GroupBox compareFunctionBox;
         private System.Windows.Forms.Button execCompare;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox compareSecondOperand;
+        private System.Windows.Forms.TextBox compareFirstOperand;
+        private System.Windows.Forms.Label compareLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton decRadioButton;
     }
 }
 

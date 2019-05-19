@@ -20,6 +20,8 @@ namespace SysSoftware
         public event Action ModifyRecordClick;
         public event Action AnalyzeClick;
         public event Action ShowStatusBarClick;
+        public event Action ComplementClick;
+        public event Action CompareClick;
 
         public string GetOpenPath(string title)
         {
@@ -92,7 +94,7 @@ namespace SysSoftware
             return constructionTextBox.Text;
         }
 
-        public void AnalysisResultSet(string result)
+        public void SetAnalysisResult(string result)
         {
             analysisResultLabel.Text = result;
         }
@@ -117,6 +119,37 @@ namespace SysSoftware
             saveInfoMenu.Enabled = state;
         }
 
+        public int GetNumeralSystem()
+        {
+            if (binRadioButton.Checked)
+                return 2;
+            else if (decRadioButton.Checked)
+                return 10;
+            else if (hexRadioButton.Checked)
+                return 16;
+            else return 0;
+        }
+
+        public string GetComplementValue()
+        {
+            return complementValue.Text;
+        }
+
+        public void SetComplementResult(string complementResult)
+        {
+            complementResultText.Text = complementResult;
+        }
+
+        public string[] GetCompareValues()
+        {
+            return new string[] { compareFirstOperand.Text, compareSecondOperand.Text };
+        }
+
+        public void SetCompareResult(string compareResult)
+        {
+            compareLabel.Text = compareResult;
+        }
+
         public new void Show()
         {
             Application.Run(this);
@@ -139,6 +172,8 @@ namespace SysSoftware
             modifyRecord.Click += delegate { ModifyRecordClick?.Invoke(); };
             analyzeButton.Click += delegate { AnalyzeClick?.Invoke(); };
             statusBarMenu.Click += delegate { ShowStatusBarClick?.Invoke(); };
+            execComplement.Click += delegate { ComplementClick?.Invoke(); };
+            execCompare.Click += delegate { CompareClick?.Invoke(); };
         }      
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
 using SysSoftware.Model.DataBaseModule;
 
@@ -111,14 +113,28 @@ namespace SysSoftware.Model
             return sBuilder.ToString();
         }
 
-        public bool AssemblyCompare(string firstValue, string secondValue)
+        public bool AssemblyCompare(params string[] values)
         {
-            return false;
+            if (!double.TryParse(values[0], out double firstValue) || !double.TryParse(values[1], out double secondValue))
+                throw new InvalidInputDataException("Неверный формат данных.");
+            Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
+            Type t = asm.GetType("AssemblyModuleDLL");
+            MethodInfo method = t.GetMethod("Compare", BindingFlags.Instance | BindingFlags.Public);
+            object instance = Activator.CreateInstance(t);
+            //method.Invoke(instance, new object[] { result, firstValue, secondValue });
+            return bool.Parse(method.Invoke(instance, new object[] { firstValue, secondValue }).ToString());
         }
 
-        public void AssemblyComplement(string value)
+        public byte AssemblyComplement(string valueString)
         {
-
+            if (!byte.TryParse(valueString, out byte value))
+                throw new InvalidInputDataException("Неверный формат данных.");
+            Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
+            Type t = asm.GetType("AssemblyModuleDLL");
+            MethodInfo method = t.GetMethod("Complement", BindingFlags.Instance | BindingFlags.Public);
+            object instance = Activator.CreateInstance(t);
+            //method.Invoke(instance, new object[] { value });
+            return byte.Parse(method.Invoke(instance, new object[] { value }).ToString());
         }
     }
 }

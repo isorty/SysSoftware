@@ -1,4 +1,5 @@
 ﻿using SysSoftware.Model;
+using System;
 using System.ComponentModel;
 
 namespace SysSoftware
@@ -271,9 +272,9 @@ namespace SysSoftware
         private void Analyze()
         {
             if (_view.GetAnalyzer())
-                _view.AnalysisResultSet(_model.AnalyzeFor(_view.GetConstruction()));
+                _view.SetAnalysisResult(_model.AnalyzeFor(_view.GetConstruction()));
             else
-                _view.AnalysisResultSet(_model.AnalyzeDoWhile(_view.GetConstruction()));
+                _view.SetAnalysisResult(_model.AnalyzeDoWhile(_view.GetConstruction()));
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Анализ завершен");
         }
 
@@ -282,8 +283,40 @@ namespace SysSoftware
             _view.ShowStatus();
         }
 
+        private void Complement()
+        {
+
+            try
+            {
+                _view.SetComplementResult(Convert.ToString(_model.AssemblyComplement(_view.GetComplementValue()), _view.GetNumeralSystem()).ToUpper());
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершено");
+            }
+            catch (InvalidInputDataException e)
+            {
+                ShowError(e.Message);
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
+            }
+        }
+
+        private void Compare()
+        {
+            try
+            {
+                if (_model.AssemblyCompare(_view.GetCompareValues()))
+                    _view.SetCompareResult("≥");
+                else
+                    _view.SetCompareResult("<");
+            }
+            catch (InvalidInputDataException e)
+            {
+                ShowError(e.Message);
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
+            }
+        }
+
         public void Run()
         {
+            //Function.GenerateDLL.Generate();
             _view.Show();
         }
 
@@ -305,6 +338,8 @@ namespace SysSoftware
             _view.ModifyRecordClick += ModifyRecord;
             _view.AnalyzeClick += Analyze;
             _view.ShowStatusBarClick += ShowStatus;
+            _view.ComplementClick += Complement;
+            _view.CompareClick += Compare;
         }
     }
 }
