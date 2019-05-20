@@ -113,7 +113,7 @@ namespace SysSoftware.Model
             return sBuilder.ToString();
         }
 
-        public byte AssemblyCompare(params string[] values)
+        public string AssemblyCompare(params string[] values)
         {
             if (!double.TryParse(values[0], out double firstValue) || !double.TryParse(values[1], out double secondValue))
                 throw new InvalidInputDataException("Неверный формат данных.");
@@ -121,20 +121,26 @@ namespace SysSoftware.Model
             Type t = asm.GetType("AssemblyModuleDLL");
             MethodInfo method = t.GetMethod("Compare", BindingFlags.Instance | BindingFlags.Public);
             object instance = Activator.CreateInstance(t);
-            //method.Invoke(instance, new object[] { result, firstValue, secondValue });
-            return byte.Parse(method.Invoke(instance, new object[] { firstValue, secondValue }).ToString());
+            var result = Convert.ToByte(method.Invoke(instance, new object[] { firstValue, secondValue }));
+            return result == 0 ? "≥" : "<";
         }
 
-        public uint AssemblyComplement(string valueString)
+        public string AssemblyComplement(string valueString, int numeralSystem)
         {
-            if (!uint.TryParse(valueString, out uint value))
+            try
+            {
+                uint value = Convert.ToUInt32(valueString, numeralSystem);
+                Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
+                Type t = asm.GetType("AssemblyModuleDLL");
+                MethodInfo method = t.GetMethod("Complement", BindingFlags.Instance | BindingFlags.Public);
+                object instance = Activator.CreateInstance(t);
+                var result = Convert.ToUInt32(method.Invoke(instance, new object[] { value }));
+                return Convert.ToString(result, numeralSystem).ToUpper();
+            }
+            catch
+            {
                 throw new InvalidInputDataException("Неверный формат данных.");
-            Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
-            Type t = asm.GetType("AssemblyModuleDLL");
-            MethodInfo method = t.GetMethod("Complement", BindingFlags.Instance | BindingFlags.Public);
-            object instance = Activator.CreateInstance(t);
-            //method.Invoke(instance, new object[] { value });
-            return uint.Parse(method.Invoke(instance, new object[] { value }).ToString());
+            }
         }
     }
 }

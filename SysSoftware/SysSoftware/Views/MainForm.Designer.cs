@@ -528,16 +528,17 @@
             this.formatBox.Controls.Add(this.decRadioButton);
             this.formatBox.Controls.Add(this.hexRadioButton);
             this.formatBox.Controls.Add(this.binRadioButton);
-            this.formatBox.Location = new System.Drawing.Point(10, 91);
+            this.formatBox.Location = new System.Drawing.Point(10, 31);
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(164, 94);
             this.formatBox.TabIndex = 2;
             this.formatBox.TabStop = false;
-            this.formatBox.Text = "Формат данных результата";
+            this.formatBox.Text = "Формат данных ";
             // 
             // decRadioButton
             // 
             this.decRadioButton.AutoSize = true;
+            this.decRadioButton.Checked = true;
             this.decRadioButton.Location = new System.Drawing.Point(7, 44);
             this.decRadioButton.Name = "decRadioButton";
             this.decRadioButton.Size = new System.Drawing.Size(47, 17);
@@ -549,12 +550,10 @@
             // hexRadioButton
             // 
             this.hexRadioButton.AutoSize = true;
-            this.hexRadioButton.Checked = true;
             this.hexRadioButton.Location = new System.Drawing.Point(7, 67);
             this.hexRadioButton.Name = "hexRadioButton";
             this.hexRadioButton.Size = new System.Drawing.Size(47, 17);
             this.hexRadioButton.TabIndex = 2;
-            this.hexRadioButton.TabStop = true;
             this.hexRadioButton.Text = "HEX";
             this.hexRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -570,9 +569,10 @@
             // 
             // complementValue
             // 
-            this.complementValue.Location = new System.Drawing.Point(10, 50);
+            this.complementValue.Location = new System.Drawing.Point(10, 159);
+            this.complementValue.MaxLength = 32;
             this.complementValue.Name = "complementValue";
-            this.complementValue.Size = new System.Drawing.Size(118, 20);
+            this.complementValue.Size = new System.Drawing.Size(197, 20);
             this.complementValue.TabIndex = 1;
             this.complementValue.Text = "10011001";
             // 
@@ -580,7 +580,7 @@
             // 
             this.dataLabel.AutoSize = true;
             this.dataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataLabel.Location = new System.Drawing.Point(7, 31);
+            this.dataLabel.Location = new System.Drawing.Point(7, 140);
             this.dataLabel.Name = "dataLabel";
             this.dataLabel.Size = new System.Drawing.Size(56, 15);
             this.dataLabel.TabIndex = 0;

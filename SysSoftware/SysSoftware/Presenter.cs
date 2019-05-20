@@ -288,7 +288,7 @@ namespace SysSoftware
 
             try
             {
-                _view.SetComplementResult(Convert.ToString(_model.AssemblyComplement(_view.GetComplementValue()), _view.GetNumeralSystem()).ToUpper());
+                _view.SetComplementResult(_model.AssemblyComplement(_view.GetComplementValue(), _view.GetNumeralSystem()));
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершено");
             }
             catch (InvalidInputDataException e)
@@ -302,14 +302,16 @@ namespace SysSoftware
         {
             try
             {
-                if (_model.AssemblyCompare(_view.GetCompareValues()) == 0)
-                    _view.SetCompareResult("≥");
-                if (_model.AssemblyCompare(_view.GetCompareValues()) == 1)
-                    _view.SetCompareResult("<");
+                    _view.SetCompareResult(_model.AssemblyCompare(_view.GetCompareValues()));
             }
             catch (InvalidInputDataException e)
             {
                 ShowError(e.Message);
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
+            }
+            catch (Exception e)
+            {
+                ShowError(e.StackTrace);
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
             }
         }
