@@ -99,24 +99,38 @@ namespace SysSoftware
             analysisResultLabel.Text = result;
         }
 
+        public void EditEnable(bool state)
+        {
+            addRecord.Enabled = state;
+            toolAddRecordButton.Enabled = state;
+            modifyRecord.Enabled = state;
+            toolModifyRecordButton.Enabled = state;
+            deleteRecord.Enabled = state;
+            toolDeleteRecordButton.Enabled = state;
+        }
+
         public void SaveEnable(bool state)
         {
             saveFileMenu.Enabled = state;
+            toolSaveButton.Enabled = state;
         }
 
         public void SaveAsEnable(bool state)
         {
             saveAsFileMenu.Enabled = state;
+            toolSaveAsButton.Enabled = state;
         }
 
         public void CloseEnable(bool state)
         {
             closeFileMenu.Enabled = state;
+            toolCloseButton.Enabled = state;
         }
 
         public void ExportEnable(bool state)
         {
             saveInfoMenu.Enabled = state;
+            toolExportButton.Enabled = state;
         }
 
         public int GetNumeralSystem()
@@ -159,17 +173,29 @@ namespace SysSoftware
         {
             InitializeComponent();
             createBinaryFileMenu.Click += delegate { CreateBinaryFileClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
+            toolCreateBinButton.Click += delegate { CreateBinaryFileClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
             createJSONFileMenu.Click += delegate { CreateJSONFileClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
+            toolCreateJsonButton.Click += delegate { CreateJSONFileClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
             openFileMenu.Click += delegate { OpenFileClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
+            toolOpenButton.Click += delegate { OpenFileClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
             saveFileMenu.Click += delegate { SaveFileClick?.Invoke(); };
             saveAsFileMenu.Click += delegate { SaveAsFileClick?.Invoke(); };
+            toolSaveButton.Click += delegate { SaveFileClick?.Invoke(); };
+            toolSaveAsButton.Click += delegate { SaveAsFileClick?.Invoke(); };
             closeFileMenu.Click += delegate { CloseFileClick?.Invoke(); };
+            toolCloseButton.Click += delegate { CloseFileClick?.Invoke(); };
             getAccessInfoMenu.Click += delegate { GetAccessInfoClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
+            toolMenuAccessImport.Click += delegate { GetAccessInfoClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
             getFileInfoMenu.Click += delegate { GetFileInfoClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
+            toolMenuFileInfoImport.Click += delegate { GetFileInfoClick?.Invoke(); mainTabControl.SelectTab(1); table.ClearSelection(); };
             saveInfoMenu.Click += delegate { SaveInfoClick?.Invoke(); };
+            toolExportButton.Click += delegate { SaveInfoClick?.Invoke(); };
             addRecord.Click += delegate { AddRecordClick?.Invoke(); };
+            toolAddRecordButton.Click += delegate { AddRecordClick?.Invoke(); };
             deleteRecord.Click += delegate { DeleteRecordClick?.Invoke(); };
+            toolDeleteRecordButton.Click += delegate { DeleteRecordClick?.Invoke(); };
             modifyRecord.Click += delegate { ModifyRecordClick?.Invoke(); };
+            toolModifyRecordButton.Click += delegate { ModifyRecordClick?.Invoke(); };
             analyzeButton.Click += delegate { AnalyzeClick?.Invoke(); };
             statusBarMenu.Click += delegate { ShowStatusBarClick?.Invoke(); };
             execComplement.Click += delegate { ComplementClick?.Invoke(); };

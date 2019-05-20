@@ -77,7 +77,8 @@ namespace SysSoftware
             foreach (var i in dataList.Records)
                 bindingList.Add(i);
             if (bindingList.Count > 0)
-                _view.TableUpdate(bindingList);           
+                _view.TableUpdate(bindingList);
+            _view.EditEnable(true);       
             _view.SaveAsEnable(true);
             _view.CloseEnable(true);
             _view.ExportEnable(true);
@@ -123,6 +124,7 @@ namespace SysSoftware
             dataList.Records.Clear();
             _view.TableClear();
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл закрыт");
+            _view.EditEnable(false);
             _view.SaveAsEnable(false);
             _view.CloseEnable(false);
             _view.ExportEnable(false);
@@ -143,6 +145,7 @@ namespace SysSoftware
             if (bindingList.Count > 0)
                 _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
+            _view.EditEnable(true);
             _view.SaveAsEnable(true);
             _view.CloseEnable(true);
         }
@@ -180,6 +183,7 @@ namespace SysSoftware
             if (bindingList.Count > 0)
                 _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
+            _view.EditEnable(true);
             _view.SaveAsEnable(true);
             _view.CloseEnable(true);
         }

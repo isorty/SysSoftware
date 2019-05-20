@@ -115,7 +115,9 @@ namespace SysSoftware.Model
 
         public string AssemblyCompare(params string[] values)
         {
-            if (!double.TryParse(values[0], out double firstValue) || !double.TryParse(values[1], out double secondValue))
+            double firstValue;
+            double secondValue;
+            if (!double.TryParse(values[0], out firstValue) || !double.TryParse(values[1], out secondValue))
                 throw new InvalidInputDataException("Неверный формат данных.");
             Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
             Type t = asm.GetType("AssemblyModuleDLL");

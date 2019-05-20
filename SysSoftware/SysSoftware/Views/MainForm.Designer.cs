@@ -94,17 +94,17 @@
             this.toolSaveAsButton = new System.Windows.Forms.ToolStripButton();
             this.toolCloseButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolExportButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolAboutButton = new System.Windows.Forms.ToolStripButton();
-            this.toolExitButton = new System.Windows.Forms.ToolStripButton();
             this.toolImportButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolMenuAccessImport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenuFileInfoImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolExportButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolAddRecordButton = new System.Windows.Forms.ToolStripButton();
             this.toolModifyRecordButton = new System.Windows.Forms.ToolStripButton();
             this.toolDeleteRecordButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolAboutButton = new System.Windows.Forms.ToolStripButton();
+            this.toolExitButton = new System.Windows.Forms.ToolStripButton();
             this.mainMenu.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.analizatorPage.SuspendLayout();
@@ -162,13 +162,13 @@
             // createBinaryFileMenu
             // 
             this.createBinaryFileMenu.Name = "createBinaryFileMenu";
-            this.createBinaryFileMenu.Size = new System.Drawing.Size(180, 22);
+            this.createBinaryFileMenu.Size = new System.Drawing.Size(172, 22);
             this.createBinaryFileMenu.Text = "Бинарный файл...";
             // 
             // createJSONFileMenu
             // 
             this.createJSONFileMenu.Name = "createJSONFileMenu";
-            this.createJSONFileMenu.Size = new System.Drawing.Size(180, 22);
+            this.createJSONFileMenu.Size = new System.Drawing.Size(172, 22);
             this.createJSONFileMenu.Text = "Файл JSON...";
             // 
             // openFileMenu
@@ -291,7 +291,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(13, 63);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(530, 397);
+            this.mainTabControl.Size = new System.Drawing.Size(530, 431);
             this.mainTabControl.TabIndex = 10;
             // 
             // analizatorPage
@@ -378,14 +378,15 @@
             this.filePage.Location = new System.Drawing.Point(4, 22);
             this.filePage.Name = "filePage";
             this.filePage.Padding = new System.Windows.Forms.Padding(3);
-            this.filePage.Size = new System.Drawing.Size(526, 361);
+            this.filePage.Size = new System.Drawing.Size(522, 405);
             this.filePage.TabIndex = 1;
             this.filePage.Text = "Работа с данными";
             this.filePage.UseVisualStyleBackColor = true;
             // 
             // deleteRecord
             // 
-            this.deleteRecord.Location = new System.Drawing.Point(168, 378);
+            this.deleteRecord.Enabled = false;
+            this.deleteRecord.Location = new System.Drawing.Point(168, 376);
             this.deleteRecord.Name = "deleteRecord";
             this.deleteRecord.Size = new System.Drawing.Size(75, 23);
             this.deleteRecord.TabIndex = 3;
@@ -394,7 +395,8 @@
             // 
             // modifyRecord
             // 
-            this.modifyRecord.Location = new System.Drawing.Point(87, 378);
+            this.modifyRecord.Enabled = false;
+            this.modifyRecord.Location = new System.Drawing.Point(87, 376);
             this.modifyRecord.Name = "modifyRecord";
             this.modifyRecord.Size = new System.Drawing.Size(75, 23);
             this.modifyRecord.TabIndex = 2;
@@ -403,7 +405,8 @@
             // 
             // addRecord
             // 
-            this.addRecord.Location = new System.Drawing.Point(6, 378);
+            this.addRecord.Enabled = false;
+            this.addRecord.Location = new System.Drawing.Point(6, 376);
             this.addRecord.Name = "addRecord";
             this.addRecord.Size = new System.Drawing.Size(75, 23);
             this.addRecord.TabIndex = 1;
@@ -419,7 +422,7 @@
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Location = new System.Drawing.Point(6, 3);
             this.table.Name = "table";
-            this.table.Size = new System.Drawing.Size(517, 369);
+            this.table.Size = new System.Drawing.Size(517, 367);
             this.table.TabIndex = 0;
             // 
             // functionPage
@@ -429,7 +432,7 @@
             this.functionPage.Location = new System.Drawing.Point(4, 22);
             this.functionPage.Name = "functionPage";
             this.functionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.functionPage.Size = new System.Drawing.Size(526, 361);
+            this.functionPage.Size = new System.Drawing.Size(522, 405);
             this.functionPage.TabIndex = 2;
             this.functionPage.Text = "Низкоуровневая функция";
             this.functionPage.UseVisualStyleBackColor = true;
@@ -612,7 +615,7 @@
             this.statusBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusText});
-            this.statusBar.Location = new System.Drawing.Point(0, 463);
+            this.statusBar.Location = new System.Drawing.Point(0, 494);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(555, 22);
             this.statusBar.SizingGrip = false;
@@ -720,39 +723,6 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 27);
             // 
-            // toolExportButton
-            // 
-            this.toolExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolExportButton.Enabled = false;
-            this.toolExportButton.Image = ((System.Drawing.Image)(resources.GetObject("toolExportButton.Image")));
-            this.toolExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolExportButton.Name = "toolExportButton";
-            this.toolExportButton.Size = new System.Drawing.Size(24, 24);
-            this.toolExportButton.Text = "Экспортировать данные";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolAboutButton
-            // 
-            this.toolAboutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolAboutButton.Image = ((System.Drawing.Image)(resources.GetObject("toolAboutButton.Image")));
-            this.toolAboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolAboutButton.Name = "toolAboutButton";
-            this.toolAboutButton.Size = new System.Drawing.Size(24, 24);
-            this.toolAboutButton.Text = "О программе";
-            // 
-            // toolExitButton
-            // 
-            this.toolExitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolExitButton.Image = ((System.Drawing.Image)(resources.GetObject("toolExitButton.Image")));
-            this.toolExitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolExitButton.Name = "toolExitButton";
-            this.toolExitButton.Size = new System.Drawing.Size(24, 24);
-            this.toolExitButton.Text = "Выход";
-            // 
             // toolImportButton
             // 
             this.toolImportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -776,6 +746,21 @@
             this.toolMenuFileInfoImport.Name = "toolMenuFileInfoImport";
             this.toolMenuFileInfoImport.Size = new System.Drawing.Size(274, 22);
             this.toolMenuFileInfoImport.Text = "Импортировать данные о файлах";
+            // 
+            // toolExportButton
+            // 
+            this.toolExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolExportButton.Enabled = false;
+            this.toolExportButton.Image = ((System.Drawing.Image)(resources.GetObject("toolExportButton.Image")));
+            this.toolExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExportButton.Name = "toolExportButton";
+            this.toolExportButton.Size = new System.Drawing.Size(24, 24);
+            this.toolExportButton.Text = "Экспортировать данные";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
             // 
             // toolAddRecordButton
             // 
@@ -812,11 +797,29 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
             // 
+            // toolAboutButton
+            // 
+            this.toolAboutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolAboutButton.Image = ((System.Drawing.Image)(resources.GetObject("toolAboutButton.Image")));
+            this.toolAboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAboutButton.Name = "toolAboutButton";
+            this.toolAboutButton.Size = new System.Drawing.Size(24, 24);
+            this.toolAboutButton.Text = "О программе";
+            // 
+            // toolExitButton
+            // 
+            this.toolExitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolExitButton.Image = ((System.Drawing.Image)(resources.GetObject("toolExitButton.Image")));
+            this.toolExitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExitButton.Name = "toolExitButton";
+            this.toolExitButton.Size = new System.Drawing.Size(24, 24);
+            this.toolExitButton.Text = "Выход";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 485);
+            this.ClientSize = new System.Drawing.Size(555, 516);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.mainTabControl);
