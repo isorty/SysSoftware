@@ -97,7 +97,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -124,33 +124,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\new1.png" />
+    <Content Include="Resources\about.png" />
+    <Content Include="Resources\BINnewFile.png" />
+    <Content Include="Resources\BINopenFile.png" />
+    <Content Include="Resources\closeFile.png" />
+    <Content Include="Resources\copy.png" />
+    <Content Include="Resources\exit.png" />
+    <Content Include="Resources\export.png" />
+    <Content Include="Resources\import.png" />
+    <Content Include="Resources\JSONnewFile.png" />
+    <Content Include="Resources\JSONopenFile.png" />
+    <None Include="Resources\openBIN.bmp" />
+    <None Include="Resources\openBIN.ico" />
+    <Content Include="Resources\past.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\saveas.png" />
+    <Content Include="Resources\statusbar.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\open1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\saveas1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\copy1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\past1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strokasost1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\help1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\exit1.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

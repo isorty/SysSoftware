@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +86,25 @@
             this.statusText = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolCreateBinButton = new System.Windows.Forms.ToolStripButton();
+            this.toolCreateJsonButton = new System.Windows.Forms.ToolStripButton();
+            this.toolOpenButton = new System.Windows.Forms.ToolStripButton();
+            this.toolSaveButton = new System.Windows.Forms.ToolStripButton();
+            this.toolSaveAsButton = new System.Windows.Forms.ToolStripButton();
+            this.toolCloseButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolExportButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolAboutButton = new System.Windows.Forms.ToolStripButton();
+            this.toolExitButton = new System.Windows.Forms.ToolStripButton();
+            this.toolImportButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolMenuAccessImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolMenuFileInfoImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolAddRecordButton = new System.Windows.Forms.ToolStripButton();
+            this.toolModifyRecordButton = new System.Windows.Forms.ToolStripButton();
+            this.toolDeleteRecordButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.mainMenu.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.analizatorPage.SuspendLayout();
@@ -96,6 +116,7 @@
             this.complementFunctionBox.SuspendLayout();
             this.formatBox.SuspendLayout();
             this.statusBar.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -106,7 +127,7 @@
             this.справкаToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(545, 24);
+            this.mainMenu.Size = new System.Drawing.Size(555, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "mainMenu";
             // 
@@ -141,13 +162,13 @@
             // createBinaryFileMenu
             // 
             this.createBinaryFileMenu.Name = "createBinaryFileMenu";
-            this.createBinaryFileMenu.Size = new System.Drawing.Size(172, 22);
+            this.createBinaryFileMenu.Size = new System.Drawing.Size(180, 22);
             this.createBinaryFileMenu.Text = "Бинарный файл...";
             // 
             // createJSONFileMenu
             // 
             this.createJSONFileMenu.Name = "createJSONFileMenu";
-            this.createJSONFileMenu.Size = new System.Drawing.Size(172, 22);
+            this.createJSONFileMenu.Size = new System.Drawing.Size(180, 22);
             this.createJSONFileMenu.Text = "Файл JSON...";
             // 
             // openFileMenu
@@ -267,10 +288,10 @@
             this.mainTabControl.Controls.Add(this.analizatorPage);
             this.mainTabControl.Controls.Add(this.filePage);
             this.mainTabControl.Controls.Add(this.functionPage);
-            this.mainTabControl.Location = new System.Drawing.Point(13, 27);
+            this.mainTabControl.Location = new System.Drawing.Point(13, 63);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(525, 433);
+            this.mainTabControl.Size = new System.Drawing.Size(530, 397);
             this.mainTabControl.TabIndex = 10;
             // 
             // analizatorPage
@@ -283,7 +304,7 @@
             this.analizatorPage.Location = new System.Drawing.Point(4, 22);
             this.analizatorPage.Name = "analizatorPage";
             this.analizatorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.analizatorPage.Size = new System.Drawing.Size(517, 407);
+            this.analizatorPage.Size = new System.Drawing.Size(522, 371);
             this.analizatorPage.TabIndex = 0;
             this.analizatorPage.Text = "Анализатор";
             this.analizatorPage.UseVisualStyleBackColor = true;
@@ -333,7 +354,7 @@
             this.constructionBox.Controls.Add(this.constructionTextBox);
             this.constructionBox.Location = new System.Drawing.Point(7, 61);
             this.constructionBox.Name = "constructionBox";
-            this.constructionBox.Size = new System.Drawing.Size(504, 263);
+            this.constructionBox.Size = new System.Drawing.Size(513, 263);
             this.constructionBox.TabIndex = 0;
             this.constructionBox.TabStop = false;
             this.constructionBox.Text = "Конструкция";
@@ -344,7 +365,7 @@
             this.constructionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.constructionTextBox.Location = new System.Drawing.Point(7, 20);
             this.constructionTextBox.Name = "constructionTextBox";
-            this.constructionTextBox.Size = new System.Drawing.Size(491, 237);
+            this.constructionTextBox.Size = new System.Drawing.Size(500, 237);
             this.constructionTextBox.TabIndex = 0;
             this.constructionTextBox.Text = "double i = 0;\nfor ( int j = 0; j < 14; j++ )\n{\n       i = (i + 5) / 2;\n}";
             // 
@@ -357,7 +378,7 @@
             this.filePage.Location = new System.Drawing.Point(4, 22);
             this.filePage.Name = "filePage";
             this.filePage.Padding = new System.Windows.Forms.Padding(3);
-            this.filePage.Size = new System.Drawing.Size(517, 407);
+            this.filePage.Size = new System.Drawing.Size(526, 361);
             this.filePage.TabIndex = 1;
             this.filePage.Text = "Работа с данными";
             this.filePage.UseVisualStyleBackColor = true;
@@ -398,7 +419,7 @@
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Location = new System.Drawing.Point(6, 3);
             this.table.Name = "table";
-            this.table.Size = new System.Drawing.Size(505, 369);
+            this.table.Size = new System.Drawing.Size(517, 369);
             this.table.TabIndex = 0;
             // 
             // functionPage
@@ -408,7 +429,7 @@
             this.functionPage.Location = new System.Drawing.Point(4, 22);
             this.functionPage.Name = "functionPage";
             this.functionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.functionPage.Size = new System.Drawing.Size(517, 407);
+            this.functionPage.Size = new System.Drawing.Size(526, 361);
             this.functionPage.TabIndex = 2;
             this.functionPage.Text = "Низкоуровневая функция";
             this.functionPage.UseVisualStyleBackColor = true;
@@ -421,9 +442,9 @@
             this.compareFunctionBox.Controls.Add(this.execCompare);
             this.compareFunctionBox.Controls.Add(this.compareSecondOperand);
             this.compareFunctionBox.Controls.Add(this.compareFirstOperand);
-            this.compareFunctionBox.Location = new System.Drawing.Point(260, 7);
+            this.compareFunctionBox.Location = new System.Drawing.Point(263, 7);
             this.compareFunctionBox.Name = "compareFunctionBox";
-            this.compareFunctionBox.Size = new System.Drawing.Size(249, 394);
+            this.compareFunctionBox.Size = new System.Drawing.Size(257, 394);
             this.compareFunctionBox.TabIndex = 1;
             this.compareFunctionBox.TabStop = false;
             this.compareFunctionBox.Text = "Сравнение";
@@ -490,7 +511,7 @@
             this.complementFunctionBox.Controls.Add(this.dataLabel);
             this.complementFunctionBox.Location = new System.Drawing.Point(7, 7);
             this.complementFunctionBox.Name = "complementFunctionBox";
-            this.complementFunctionBox.Size = new System.Drawing.Size(250, 394);
+            this.complementFunctionBox.Size = new System.Drawing.Size(256, 394);
             this.complementFunctionBox.TabIndex = 0;
             this.complementFunctionBox.TabStop = false;
             this.complementFunctionBox.Text = "Побитовое дополнение";
@@ -593,7 +614,7 @@
             this.statusText});
             this.statusBar.Location = new System.Drawing.Point(0, 463);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(545, 22);
+            this.statusBar.Size = new System.Drawing.Size(555, 22);
             this.statusBar.SizingGrip = false;
             this.statusBar.TabIndex = 11;
             this.statusBar.Text = "statusBar";
@@ -607,11 +628,196 @@
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
+            // toolStrip
+            // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolCreateBinButton,
+            this.toolCreateJsonButton,
+            this.toolOpenButton,
+            this.toolSaveButton,
+            this.toolSaveAsButton,
+            this.toolCloseButton,
+            this.toolStripSeparator7,
+            this.toolImportButton,
+            this.toolExportButton,
+            this.toolStripSeparator8,
+            this.toolAddRecordButton,
+            this.toolModifyRecordButton,
+            this.toolDeleteRecordButton,
+            this.toolStripSeparator5,
+            this.toolAboutButton,
+            this.toolExitButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip.Size = new System.Drawing.Size(555, 27);
+            this.toolStrip.TabIndex = 12;
+            this.toolStrip.Text = "toolStrip";
+            // 
+            // toolCreateBinButton
+            // 
+            this.toolCreateBinButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCreateBinButton.Image = ((System.Drawing.Image)(resources.GetObject("toolCreateBinButton.Image")));
+            this.toolCreateBinButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCreateBinButton.Name = "toolCreateBinButton";
+            this.toolCreateBinButton.Size = new System.Drawing.Size(24, 24);
+            this.toolCreateBinButton.Text = "Создать бинарный файл";
+            this.toolCreateBinButton.ToolTipText = "Создать бинарный файл";
+            // 
+            // toolCreateJsonButton
+            // 
+            this.toolCreateJsonButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCreateJsonButton.Image = ((System.Drawing.Image)(resources.GetObject("toolCreateJsonButton.Image")));
+            this.toolCreateJsonButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCreateJsonButton.Name = "toolCreateJsonButton";
+            this.toolCreateJsonButton.Size = new System.Drawing.Size(24, 24);
+            this.toolCreateJsonButton.Text = "Создать файл JSON";
+            this.toolCreateJsonButton.ToolTipText = "Создать файл JSON";
+            // 
+            // toolOpenButton
+            // 
+            this.toolOpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolOpenButton.Image = ((System.Drawing.Image)(resources.GetObject("toolOpenButton.Image")));
+            this.toolOpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolOpenButton.Name = "toolOpenButton";
+            this.toolOpenButton.Size = new System.Drawing.Size(24, 24);
+            this.toolOpenButton.Text = "Открыть файл";
+            this.toolOpenButton.ToolTipText = "Открыть файл";
+            // 
+            // toolSaveButton
+            // 
+            this.toolSaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolSaveButton.Enabled = false;
+            this.toolSaveButton.Image = ((System.Drawing.Image)(resources.GetObject("toolSaveButton.Image")));
+            this.toolSaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSaveButton.Name = "toolSaveButton";
+            this.toolSaveButton.Size = new System.Drawing.Size(24, 24);
+            this.toolSaveButton.Text = "Сохранить";
+            // 
+            // toolSaveAsButton
+            // 
+            this.toolSaveAsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolSaveAsButton.Enabled = false;
+            this.toolSaveAsButton.Image = ((System.Drawing.Image)(resources.GetObject("toolSaveAsButton.Image")));
+            this.toolSaveAsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSaveAsButton.Name = "toolSaveAsButton";
+            this.toolSaveAsButton.Size = new System.Drawing.Size(24, 24);
+            this.toolSaveAsButton.Text = "Сохранить как";
+            // 
+            // toolCloseButton
+            // 
+            this.toolCloseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCloseButton.Enabled = false;
+            this.toolCloseButton.Image = ((System.Drawing.Image)(resources.GetObject("toolCloseButton.Image")));
+            this.toolCloseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCloseButton.Name = "toolCloseButton";
+            this.toolCloseButton.Size = new System.Drawing.Size(24, 24);
+            this.toolCloseButton.Text = "Закрыть файл";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolExportButton
+            // 
+            this.toolExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolExportButton.Enabled = false;
+            this.toolExportButton.Image = ((System.Drawing.Image)(resources.GetObject("toolExportButton.Image")));
+            this.toolExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExportButton.Name = "toolExportButton";
+            this.toolExportButton.Size = new System.Drawing.Size(24, 24);
+            this.toolExportButton.Text = "Экспортировать данные";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolAboutButton
+            // 
+            this.toolAboutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolAboutButton.Image = ((System.Drawing.Image)(resources.GetObject("toolAboutButton.Image")));
+            this.toolAboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAboutButton.Name = "toolAboutButton";
+            this.toolAboutButton.Size = new System.Drawing.Size(24, 24);
+            this.toolAboutButton.Text = "О программе";
+            // 
+            // toolExitButton
+            // 
+            this.toolExitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolExitButton.Image = ((System.Drawing.Image)(resources.GetObject("toolExitButton.Image")));
+            this.toolExitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExitButton.Name = "toolExitButton";
+            this.toolExitButton.Size = new System.Drawing.Size(24, 24);
+            this.toolExitButton.Text = "Выход";
+            // 
+            // toolImportButton
+            // 
+            this.toolImportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolImportButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolMenuAccessImport,
+            this.toolMenuFileInfoImport});
+            this.toolImportButton.Image = ((System.Drawing.Image)(resources.GetObject("toolImportButton.Image")));
+            this.toolImportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolImportButton.Name = "toolImportButton";
+            this.toolImportButton.Size = new System.Drawing.Size(33, 24);
+            this.toolImportButton.Text = "Импортировать из БД";
+            // 
+            // toolMenuAccessImport
+            // 
+            this.toolMenuAccessImport.Name = "toolMenuAccessImport";
+            this.toolMenuAccessImport.Size = new System.Drawing.Size(274, 22);
+            this.toolMenuAccessImport.Text = "Импортиторовать данные о доступе";
+            // 
+            // toolMenuFileInfoImport
+            // 
+            this.toolMenuFileInfoImport.Name = "toolMenuFileInfoImport";
+            this.toolMenuFileInfoImport.Size = new System.Drawing.Size(274, 22);
+            this.toolMenuFileInfoImport.Text = "Импортировать данные о файлах";
+            // 
+            // toolAddRecordButton
+            // 
+            this.toolAddRecordButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolAddRecordButton.Enabled = false;
+            this.toolAddRecordButton.Image = ((System.Drawing.Image)(resources.GetObject("toolAddRecordButton.Image")));
+            this.toolAddRecordButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAddRecordButton.Name = "toolAddRecordButton";
+            this.toolAddRecordButton.Size = new System.Drawing.Size(24, 24);
+            this.toolAddRecordButton.Text = "Добавить запись";
+            // 
+            // toolModifyRecordButton
+            // 
+            this.toolModifyRecordButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolModifyRecordButton.Enabled = false;
+            this.toolModifyRecordButton.Image = ((System.Drawing.Image)(resources.GetObject("toolModifyRecordButton.Image")));
+            this.toolModifyRecordButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolModifyRecordButton.Name = "toolModifyRecordButton";
+            this.toolModifyRecordButton.Size = new System.Drawing.Size(24, 24);
+            this.toolModifyRecordButton.Text = "Изменить запись";
+            // 
+            // toolDeleteRecordButton
+            // 
+            this.toolDeleteRecordButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolDeleteRecordButton.Enabled = false;
+            this.toolDeleteRecordButton.Image = ((System.Drawing.Image)(resources.GetObject("toolDeleteRecordButton.Image")));
+            this.toolDeleteRecordButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolDeleteRecordButton.Name = "toolDeleteRecordButton";
+            this.toolDeleteRecordButton.Size = new System.Drawing.Size(24, 24);
+            this.toolDeleteRecordButton.Text = "Удалить запись";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 485);
+            this.ClientSize = new System.Drawing.Size(555, 485);
+            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.mainMenu);
@@ -638,6 +844,8 @@
             this.formatBox.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -702,6 +910,25 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton decRadioButton;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton toolCreateBinButton;
+        private System.Windows.Forms.ToolStripButton toolCreateJsonButton;
+        private System.Windows.Forms.ToolStripButton toolOpenButton;
+        private System.Windows.Forms.ToolStripButton toolSaveButton;
+        private System.Windows.Forms.ToolStripButton toolSaveAsButton;
+        private System.Windows.Forms.ToolStripButton toolCloseButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton toolExportButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripButton toolAboutButton;
+        private System.Windows.Forms.ToolStripButton toolExitButton;
+        private System.Windows.Forms.ToolStripDropDownButton toolImportButton;
+        private System.Windows.Forms.ToolStripMenuItem toolMenuAccessImport;
+        private System.Windows.Forms.ToolStripMenuItem toolMenuFileInfoImport;
+        private System.Windows.Forms.ToolStripButton toolAddRecordButton;
+        private System.Windows.Forms.ToolStripButton toolModifyRecordButton;
+        private System.Windows.Forms.ToolStripButton toolDeleteRecordButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
 
