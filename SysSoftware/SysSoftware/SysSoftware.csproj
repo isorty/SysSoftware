@@ -61,11 +61,12 @@
   <ItemGroup>
     <Compile Include="Model\Analyzers\AnalyzerDoWhile.cs" />
     <Compile Include="Model\Analyzers\AnalysisResult.cs" />
+    <Compile Include="Model\Analyzers\Analyzer_do_while.cs" />
     <Compile Include="Model\Analyzers\Analyzer_for.cs" />
-    <Compile Include="Model\Assembly\GenerateDLL.cs" />
-    <Compile Include="Model\DataBaseModule\BdAccessInfoRecord.cs" />
+    <Compile Include="Assembly\GenerateDLL.cs" />
+    <Compile Include="Model\DataBaseModule\DbAccessInfoRecord.cs" />
     <Compile Include="Model\DataBaseModule\AccessInfoContext.cs" />
-    <Compile Include="Model\DataBaseModule\BdFileInfoRecord.cs" />
+    <Compile Include="Model\DataBaseModule\DbFileInfoRecord.cs" />
     <Compile Include="Model\DataBaseModule\FileInfoContext.cs" />
     <Compile Include="Exceptions\InvalidInputDataException.cs" />
     <Compile Include="Views\IView.cs" />

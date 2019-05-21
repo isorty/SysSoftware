@@ -13,13 +13,14 @@ namespace SysSoftware
         private bool IsJSONFileOpened = false;
         private bool IsBdBinaryOpened = false;
         private bool IsBdJsonOpened = false;
-        //private bool IsSaved = true;
+        private bool IsSaved = true;
         private string currentPath = null;
         DataList dataList = new DataList();
         BindingList<object> bindingList = new BindingList<object>();             
 
         private void CreateBinaryFile()
-        {            
+        {
+            CheckSave();
             var path = _view.GetSavePath("file", "bin", "Создать бинарный файл");
             if (path != null)
             {
@@ -33,6 +34,7 @@ namespace SysSoftware
 
         private void CreateJSONFile()
         {
+            CheckSave();
             var path = _view.GetSavePath("file", "json", "Создать JSON файл");
             if (path != null)
             {
@@ -46,6 +48,7 @@ namespace SysSoftware
 
         private void OpenFile()
         {
+            CheckSave();
             var path = _view.GetOpenPath("Открыть файл");
             if (path != null && path.ToUpper().EndsWith("BIN"))
             {
@@ -69,8 +72,13 @@ namespace SysSoftware
             System.Windows.Forms.MessageBox.Show(message, "Ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
 
-        private void OpenFileProcess(string path)
+        private System.Windows.Forms.DialogResult ShowWarning(string message)
         {
+            return System.Windows.Forms.MessageBox.Show(message, "", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+        }
+
+        private void OpenFileProcess(string path)
+        {          
             bindingList.Clear();
             _view.TableClear();
             dataList = _model.OpenFile(path);
@@ -78,11 +86,35 @@ namespace SysSoftware
                 bindingList.Add(i);
             if (bindingList.Count > 0)
                 _view.TableUpdate(bindingList);
-            _view.EditEnable(true);       
+            _view.EditEnable(true);
             _view.SaveAsEnable(true);
             _view.CloseEnable(true);
             _view.ExportEnable(true);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Открыт файл " + path);
+        }
+
+        private void CheckSave()
+        {
+            if (!IsSaved)
+            {
+                switch (ShowWarning("Сохранить текущий файл?"))
+                {
+                    case System.Windows.Forms.DialogResult.Yes:
+                        {
+                            if (currentPath != null)
+                                SaveFile();
+                            else
+                                SaveAsFile();
+                            IsSaved = true;
+                            break;
+                        }
+                    case System.Windows.Forms.DialogResult.No:
+                        {
+                            IsSaved = true;
+                            break;
+                        }
+                }
+            }
         }
 
         private void SaveFile()
@@ -91,6 +123,7 @@ namespace SysSoftware
             {
                 _model.SaveFile(currentPath, dataList);
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл успешно сохранен");
+                IsSaved = true;
                 _view.SaveEnable(false);
             }
         }
@@ -101,10 +134,11 @@ namespace SysSoftware
             {
                 var path = _view.GetSavePath("fileBin", "bin", "Сохранить в...");
                 if (path != null)
-                    {
-                       _model.SaveFile(path, dataList);
-                       _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл успешно сохранен");
-                    }
+                {
+                    _model.SaveFile(path, dataList);
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл успешно сохранен");
+                    IsSaved = true;
+                }
             }
             if (IsJSONFileOpened | IsBdJsonOpened)
             {
@@ -113,12 +147,14 @@ namespace SysSoftware
                 {
                     _model.SaveFile(path, dataList);
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл успешно сохранен");
+                    IsSaved = true;
                 }
             }
         }
 
         private void CloseFile()
         {
+            CheckSave();
             currentPath = null;
             bindingList.Clear();           
             dataList.Records.Clear();
@@ -132,10 +168,12 @@ namespace SysSoftware
 
         private void GetAccessInfo()
         {
+            CheckSave();
             IsBinaryFileOpened = false;
             IsBdBinaryOpened = false;
             IsJSONFileOpened = true;
             IsBdJsonOpened = true;
+            IsSaved = false;
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
             bindingList.Clear();
             _view.TableClear();
@@ -170,10 +208,12 @@ namespace SysSoftware
 
         private void GetFileInfo()
         {
+            CheckSave();
             IsBinaryFileOpened = true;
             IsBdBinaryOpened = true;
             IsJSONFileOpened = false;
             IsBdJsonOpened = false;
+            IsSaved = false;
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
             bindingList.Clear();
             _view.TableClear();
@@ -217,6 +257,7 @@ namespace SysSoftware
             bindingList.Add(record);
             _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись добавлена");
+            IsSaved = false;
             _view.SaveEnable(true);
             _view.ExportEnable(true);
         }
@@ -235,6 +276,7 @@ namespace SysSoftware
                 bindingList.RemoveAt(number);
                 _view.TableUpdate(bindingList);
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись удалена");
+                IsSaved = false;
                 _view.SaveEnable(true);
                 _view.ExportEnable(true);
             }
@@ -269,6 +311,7 @@ namespace SysSoftware
             bindingList.Insert(recordNumber, record);
             _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись изменена");
+            IsSaved = false;
             _view.SaveEnable(true);
             _view.ExportEnable(true);
         }

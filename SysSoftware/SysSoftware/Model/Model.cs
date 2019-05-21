@@ -38,7 +38,7 @@ namespace SysSoftware.Model
             {
                 var records = db.AccessInfoRecords;
                 if (records != null)
-                    foreach (BdAccessInfoRecord record in records)
+                    foreach (DbAccessInfoRecord record in records)
                         dataList.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
             }
             return dataList;
@@ -51,7 +51,7 @@ namespace SysSoftware.Model
             {
                 var records = db.FileInfoRecords;
                 if (records != null)
-                    foreach (BdFileInfoRecord record in records)
+                    foreach (DbFileInfoRecord record in records)
                         dataList.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
             }
             return dataList;
@@ -65,7 +65,7 @@ namespace SysSoftware.Model
                 {
                     db.AccessInfoRecords.RemoveRange(db.AccessInfoRecords);
                     foreach (AccessInfoRecord record in dataList.Records)
-                        db.AccessInfoRecords.Add(new BdAccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                        db.AccessInfoRecords.Add(new DbAccessInfoRecord(record.Login, record.HashPassword, record.Email));
                 }
                 db.SaveChanges();
             }
@@ -80,7 +80,7 @@ namespace SysSoftware.Model
                     db.FileInfoRecords.RemoveRange(db.FileInfoRecords);
                     foreach (FileInfoRecord record in dataList.Records)
                         if (record != null)
-                            db.FileInfoRecords.Add(new BdFileInfoRecord(record.Path, record.Size, record.CreationDate));
+                            db.FileInfoRecords.Add(new DbFileInfoRecord(record.Path, record.Size, record.CreationDate));
                 }
                 db.SaveChanges();
             }
@@ -100,8 +100,10 @@ namespace SysSoftware.Model
 
         public string AnalyzeDoWhile(string construction)
         {
-            AnalyzerDoWhile analizator = new AnalyzerDoWhile(construction);
-            return analizator.AnalysisResult();
+            //AnalyzerDoWhile analizator = new AnalyzerDoWhile(construction);
+            //return analizator.AnalysisResult();
+            Analyzer_for.Analyze(construction);
+            return "Количество итераций цикла: " + Analyzer_do_while.Analyze(construction).RepeatCount.ToString();
         }
 
         public string GetMD5(string password)
