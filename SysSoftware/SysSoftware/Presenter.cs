@@ -139,7 +139,6 @@ namespace SysSoftware
             else
             {
                 SaveAsFile();
-                _view.SaveEnable(false);
             }
         }
 
@@ -323,6 +322,10 @@ namespace SysSoftware
                 _view.SaveEnable(true);
                 _view.ExportEnable(true);
             }
+            else
+            {
+                ShowError("Вы не выбрали строку.");
+            }
         }
 
         private void ModifyRecord()
@@ -344,6 +347,10 @@ namespace SysSoftware
                         ModifyRecordProcess(recordNumber, new AccessInfoRecord(newRecordForm.Login, newRecordForm.Password, newRecordForm.Email));
                     newRecordForm.Dispose();
                 }
+            }
+            else
+            {
+                ShowError("Вы не выбрали строку.");
             }
         }
 
