@@ -36,16 +36,5 @@ namespace Function
             typeBuilder.CreateType();
             builder.Save(assemblyName + ".dll");
         }
-
-        /*double a = 0;
-        double b = 0;
-        Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
-        Type t = asm.GetType("AssemblyModuleDLL");
-        MethodInfo method = t.GetMethod("AssemblyModule", BindingFlags.Instance | BindingFlags.Public);
-        object instance = Activator.CreateInstance(t);
-        method.Invoke(instance, new object[] { a, b });*/
-
-
     }
-
 }

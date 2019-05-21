@@ -10,12 +10,8 @@ namespace Model
         public void Add(IRecord record)
         {
             if (Records == null)
-            {
                 Records = new List<IRecord>();
-                Records.Add(record);
-            }
-            else
-                Records.Add(record);
+            Records.Add(record);
         }
 
         public void ChangeAt(int number, IRecord record)

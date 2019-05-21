@@ -7,15 +7,23 @@ namespace SysSoftware
     public class Presenter
     {
         private readonly IView _view;
+
         private readonly IModel _model;
 
         private bool IsBinaryFileOpened = false;
+
         private bool IsJSONFileOpened = false;
+
         private bool IsBdBinaryOpened = false;
+
         private bool IsBdJsonOpened = false;
+
         private bool IsSaved = true;
+
         private string currentPath = null;
+
         DataList dataList = new DataList();
+
         BindingList<object> bindingList = new BindingList<object>();             
 
         private void CreateBinaryFile()
@@ -64,7 +72,8 @@ namespace SysSoftware
                 IsJSONFileOpened = true;
                 OpenFileProcess(path);
             }
-            else ShowError("Неверный формат файла.");
+            else if (path != null)
+                ShowError("Неверный формат файла.");
         }
 
         private void ShowError(string message)
@@ -127,6 +136,11 @@ namespace SysSoftware
                 IsSaved = true;
                 _view.SaveEnable(false);
             }
+            else
+            {
+                SaveAsFile();
+                _view.SaveEnable(false);
+            }
         }
 
         private void SaveAsFile()
@@ -143,7 +157,7 @@ namespace SysSoftware
             }
             if (IsJSONFileOpened | IsBdJsonOpened)
             {
-                var path = _view.GetSavePath("fileBin", "json", "Сохранить в...");
+                var path = _view.GetSavePath("fileJson", "json", "Сохранить в...");
                 if (path != null)
                 {
                     _model.SaveFile(path, dataList);
@@ -157,8 +171,9 @@ namespace SysSoftware
         {
             CheckSave();
             currentPath = null;
-            bindingList.Clear();           
-            dataList.Records.Clear();
+            bindingList.Clear();
+            if (dataList.Records != null)
+                dataList.Records.Clear();
             _view.TableClear();
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл закрыт");
             _view.EditEnable(false);
@@ -169,26 +184,29 @@ namespace SysSoftware
 
         private void ImportAccessInfo()
         {
-            CheckSave();        
+            CloseFile();        
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
             bindingList.Clear();
             _view.TableClear();
             try
             {
                 dataList = _model.ImportAccessInfo();
-                foreach (var i in dataList.Records)
-                    bindingList.Add(i);
-                if (bindingList.Count > 0)
-                    _view.TableUpdate(bindingList);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
-                IsBinaryFileOpened = false;
-                IsBdBinaryOpened = false;
-                IsJSONFileOpened = true;
-                IsBdJsonOpened = true;
-                IsSaved = false;
-                _view.EditEnable(true);
-                _view.SaveAsEnable(true);
-                _view.CloseEnable(true);
+                if (dataList.Records != null)
+                {
+                    foreach (var i in dataList.Records)
+                        bindingList.Add(i);
+                    if (bindingList.Count > 0)
+                        _view.TableUpdate(bindingList);
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
+                    IsBinaryFileOpened = false;
+                    IsBdBinaryOpened = false;
+                    IsJSONFileOpened = true;
+                    IsBdJsonOpened = true;
+                    IsSaved = false;                 
+                    _view.EditEnable(true);
+                    _view.SaveAsEnable(true);
+                    _view.CloseEnable(true);
+                }
             }
             catch (DbConnectionException e)
             {
@@ -223,26 +241,29 @@ namespace SysSoftware
 
         private void ImportFileInfo()
         {
-            CheckSave();
+            CloseFile();
             try
-            {
+            {              
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
                 bindingList.Clear();
                 _view.TableClear();
                 dataList = _model.ImportFileInfo();
-                foreach (var i in dataList.Records)
-                    bindingList.Add(i);
-                if (bindingList.Count > 0)
-                    _view.TableUpdate(bindingList);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
-                IsBinaryFileOpened = true;
-                IsBdBinaryOpened = true;
-                IsJSONFileOpened = false;
-                IsBdJsonOpened = false;
-                IsSaved = false;
-                _view.EditEnable(true);
-                _view.SaveAsEnable(true);
-                _view.CloseEnable(true);
+                if (dataList.Records != null)
+                {
+                    foreach (var i in dataList.Records)
+                        bindingList.Add(i);
+                    if (bindingList.Count > 0)
+                        _view.TableUpdate(bindingList);
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
+                    IsBinaryFileOpened = true;
+                    IsBdBinaryOpened = true;
+                    IsJSONFileOpened = false;
+                    IsBdJsonOpened = false;
+                    IsSaved = false;
+                    _view.EditEnable(true);
+                    _view.SaveAsEnable(true);
+                    _view.CloseEnable(true);
+                }
             }
             catch (DbConnectionException e)
             {
@@ -384,6 +405,21 @@ namespace SysSoftware
             }
         }
 
+        private void About()
+        {
+            System.Windows.Forms.MessageBox.Show(
+                "Проект системного программного обеспечения.\n\nДанное ПО отражает результат выполнения курса лабораторных работ по проектированию, разработке, отладке, тестированию и документированию СПО.\n\nВозможности ПО:\n-Анализ конструкции цикла языка C#;\n-Работа с файловой системой;\n-Работа с низкоуровневыми структурами, используя специальные технологии.\n\nВыполнили студенты гр. 6302\nВоронова В. и Горбунов П.", 
+                "О приложении", System.Windows.Forms.MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBoxIcon.Information);
+        }
+
+        private void Exit()
+        {
+            dataList = null;
+            bindingList = null;
+            _view.Close();
+        }
+
         public void Run()
         {
             _view.Show();
@@ -409,6 +445,8 @@ namespace SysSoftware
             _view.ShowStatusBarClick += ShowStatus;
             _view.ComplementClick += Complement;
             _view.CompareClick += Compare;
+            _view.AboutClick += About;
+            _view.ExitClick += Exit;
         }
     }
 }

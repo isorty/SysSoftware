@@ -33,7 +33,6 @@ namespace Model
         public DataList ImportAccessInfo()
         {
             DataList dataList = new DataList();
-            dataList.Records = new System.Collections.Generic.List<IRecord>();
             try
             {
                 using (AccessInfoContext db = new AccessInfoContext())
@@ -46,7 +45,7 @@ namespace Model
             }
             catch
             {
-                throw new DbConnectionException("Ошибка пожключения к базе данных.");
+                throw new DbConnectionException("Ошибка подключения к базе данных.");
             }
             return dataList;
         }
@@ -117,7 +116,7 @@ namespace Model
         public FileInfoRecord GetFileInfo(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
-            return new FileInfoRecord(path, fileInfo.Length, fileInfo.CreationTime.ToString());
+            return new FileInfoRecord(path, Convert.ToDouble(fileInfo.Length) / 1000.0, fileInfo.CreationTime.ToString());
         }
 
         public string AnalyzeFor(string construction)

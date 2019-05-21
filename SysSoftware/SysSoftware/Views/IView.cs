@@ -37,6 +37,10 @@ namespace SysSoftware
 
         event Action CompareClick;
 
+        event Action AboutClick;
+
+        event Action ExitClick;
+
         string GetOpenPath(string title);
 
         string GetSavePath(string defaultFileName, string defaultExtension, string title);
@@ -78,6 +82,8 @@ namespace SysSoftware
         void SetCompareResult(string compareResult);
 
         void Show();
+
+        void Close();
     }
 
 }

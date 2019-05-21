@@ -7,25 +7,45 @@ namespace SysSoftware
     public partial class MainForm : Form, IView
     {
         public event Action CreateBinaryFileClick;
+
         public event Action CreateJSONFileClick;
+
         public event Action OpenFileClick;
+
         public event Action SaveFileClick;
+
         public event Action SaveAsFileClick;
+
         public event Action CloseFileClick;
+
         public event Action ImportAccessInfoClick;
+
         public event Action ImportFileInfoClick;
+
         public event Action ExportDataClick;
+
         public event Action AddRecordClick;
+
         public event Action DeleteRecordClick;
+
         public event Action ModifyRecordClick;
+
         public event Action AnalyzeClick;
+
         public event Action ShowStatusBarClick;
+
         public event Action ComplementClick;
+
         public event Action CompareClick;
+
+        public event Action AboutClick;
+
+        public event Action ExitClick;
 
         public string GetOpenPath(string title)
         {
             openFileDialog.Title = title;
+            openFileDialog.FileName = "";
             return openFileDialog.ShowDialog() == DialogResult.OK ? openFileDialog.FileName : null;
         }
 
@@ -151,6 +171,11 @@ namespace SysSoftware
             Application.Run(this);
         }
 
+        public new void Close()
+        {
+            Application.Exit();
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -182,6 +207,10 @@ namespace SysSoftware
             statusBarMenu.Click += delegate { ShowStatusBarClick?.Invoke(); };
             execComplement.Click += delegate { ComplementClick?.Invoke(); };
             execCompare.Click += delegate { CompareClick?.Invoke(); };
+            aboutMenu.Click += delegate { AboutClick?.Invoke(); };
+            toolAboutButton.Click += delegate { AboutClick?.Invoke(); };
+            exitMenu.Click += delegate { ExitClick?.Invoke(); };
+            toolExitButton.Click += delegate { ExitClick?.Invoke(); };
         }      
     }
 }
