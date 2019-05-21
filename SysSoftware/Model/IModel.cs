@@ -1,4 +1,8 @@
-﻿using Model.FileModule;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Model
 {
@@ -14,6 +18,8 @@ namespace Model
         FileInfoRecord GetFileInfo(string path);
         string AnalyzeFor(string construction);
         string AnalyzeDoWhile(string construction);
-        string GetHash(string password);
+        string GetMD5(string password);
+        string AssemblyCompare(params string[] values);
+        string AssemblyComplement(string valueString, int numeralSystem);
     }
 }

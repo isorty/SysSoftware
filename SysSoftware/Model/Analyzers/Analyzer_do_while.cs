@@ -4,18 +4,18 @@ using System.Threading;
 
 namespace Model
 {
-    public static class Analyzer_for
+    public static class Analyzer_do_while
     {
         public static AnalysisResult Analyze(string inputStructure)
         {
             //Определим, что перед нами действительно for
-            int position = 0;
+            /*int position = 0;
             bool isFor = false;
             int positionStartCycle;
             int inputStructureLength = inputStructure.Length;
             do
             {
-                positionStartCycle = inputStructure.IndexOf("for", position);
+                positionStartCycle = inputStructure.IndexOf("do", position);
 
                 if (positionStartCycle == -1) break;
 
@@ -70,7 +70,7 @@ namespace Model
                     {
             new CompilerError("", 0, 0, "", "Код не содержит цикла for")
                     },
-                    0);//не for
+                    0);//не for*/
 
             string programCodeStart = "using System;\n" +
                                       "namespace Logical.AnalizeCode\n" +
@@ -79,7 +79,7 @@ namespace Model
                                       "\t\tpublic static int AnalyzeMethod()\n" +
                                       "\t\t{";
 
-            string programCodeEnd = "\t\t\treturn countOfWhileLoopRepeat;\n" +
+            string programCodeEnd = "\n\t\t\treturn countOfWhileLoopRepeat;\n" +
                                       "\t\t}\n" +
                                       "\t}\n" +
                                       "}";
@@ -93,16 +93,15 @@ namespace Model
             };
 
             int endDoWhile = inputStructure.LastIndexOf("}");
-            if (endDoWhile!=-1) {
-                string doWhileCycle = inputStructure.Substring(0, endDoWhile);
+            if (endDoWhile != -1) {
+                //string doWhileCycle = inputStructure.Substring(0, endDoWhile);
 
                 string countOfWhileLoopRepeatString = "\ncountOfWhileLoopRepeat++;\n}";
+              
 
-                string doWhileCycleWithIIncrement = doWhileCycle + countOfWhileLoopRepeatString;
+                //string resultDoWhileCycle = doWhileCycleWithIIncrement + inputStructure.Substring(endDoWhile + 1);
 
-                string resultDoWhileCycle = doWhileCycleWithIIncrement + inputStructure.Substring(endDoWhile + 1);
-
-                string sourceCode = programCodeStart + "\nint countOfWhileLoopRepeat = 0;\n" + resultDoWhileCycle + programCodeEnd;
+                string sourceCode = programCodeStart + "\nint countOfWhileLoopRepeat = 0;\n" + inputStructure.Insert(inputStructure.IndexOf('{') + 1, countOfWhileLoopRepeatString) + programCodeEnd;
 
 
                 CompilerResults results = compiler.CompileAssemblyFromSource(parameters, sourceCode);

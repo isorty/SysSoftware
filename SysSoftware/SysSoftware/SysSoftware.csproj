@@ -41,6 +41,10 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Model\bin\Debug\Model.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -59,17 +63,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Exceptions\DbConnectionException.cs" />
-    <Compile Include="Model\Analyzers\AnalyzerDoWhile.cs" />
-    <Compile Include="Model\Analyzers\AnalysisResult.cs" />
-    <Compile Include="Model\Analyzers\Analyzer_do_while.cs" />
-    <Compile Include="Model\Analyzers\Analyzer_for.cs" />
+    <Compile Include="Model1\Exceptions\DbConnectionException.cs" />
+    <Compile Include="Model1\Analyzers\AnalyzerDoWhile.cs" />
+    <Compile Include="Model1\Analyzers\AnalysisResult.cs" />
+    <Compile Include="Model1\Analyzers\Analyzer_do_while.cs" />
+    <Compile Include="Model1\Analyzers\Analyzer_for.cs" />
     <Compile Include="Assembly\GenerateDLL.cs" />
-    <Compile Include="Model\DataBaseModule\DbAccessInfoRecord.cs" />
-    <Compile Include="Model\DataBaseModule\AccessInfoContext.cs" />
-    <Compile Include="Model\DataBaseModule\DbFileInfoRecord.cs" />
-    <Compile Include="Model\DataBaseModule\FileInfoContext.cs" />
-    <Compile Include="Model\Exceptions\InvalidInputDataException.cs" />
+    <Compile Include="Model1\DataBaseModule\DbAccessInfoRecord.cs" />
+    <Compile Include="Model1\DataBaseModule\AccessInfoContext.cs" />
+    <Compile Include="Model1\DataBaseModule\DbFileInfoRecord.cs" />
+    <Compile Include="Model1\DataBaseModule\FileInfoContext.cs" />
+    <Compile Include="Model1\Exceptions\InvalidInputDataException.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -77,15 +81,15 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\FileModule\BinaryFile.cs" />
-    <Compile Include="Model\FileModule\FileInfoRecord.cs" />
-    <Compile Include="Model\FileModule\DataList.cs" />
-    <Compile Include="Model\FileModule\IFile.cs" />
-    <Compile Include="Model\IModel.cs" />
-    <Compile Include="Model\FileModule\JSONFile.cs" />
-    <Compile Include="Model\FileModule\AccessInfoRecord.cs" />
-    <Compile Include="Model\FileModule\IRecord.cs" />
-    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model1\FileModule\BinaryFile.cs" />
+    <Compile Include="Model1\FileModule\FileInfoRecord.cs" />
+    <Compile Include="Model1\FileModule\DataList.cs" />
+    <Compile Include="Model1\FileModule\IFile.cs" />
+    <Compile Include="Model1\IModel.cs" />
+    <Compile Include="Model1\FileModule\JSONFile.cs" />
+    <Compile Include="Model1\FileModule\AccessInfoRecord.cs" />
+    <Compile Include="Model1\FileModule\IRecord.cs" />
+    <Compile Include="Model1\Model.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Model.Analyzers
+namespace Model
 {
     public class AnalyzerDoWhile
     {

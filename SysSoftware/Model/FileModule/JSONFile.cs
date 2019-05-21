@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Model.FileModule
+namespace Model
 {
     public class JSONFile : IFile
     {

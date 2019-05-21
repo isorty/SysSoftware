@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.CodeDom.Compiler;
 
-namespace Model.Analyzers
+namespace Model
 {
     public class AnalysisResult
     {

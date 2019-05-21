@@ -1,10 +1,10 @@
 ﻿using System.Data.Entity;
 
-namespace Model.DataBaseModule
+namespace Model
 {
     class FileInfoContext : DbContext
     {
-        public DbSet<BdFileInfoRecord> FileInfoRecords { get; set; }
+        public DbSet<DbFileInfoRecord> FileInfoRecords { get; set; }
 
         public FileInfoContext() : base("DbConnection") { }
     }

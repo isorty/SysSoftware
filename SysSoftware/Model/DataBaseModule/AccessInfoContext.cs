@@ -1,10 +1,10 @@
 ﻿using System.Data.Entity;
 
-namespace Model.DataBaseModule
+namespace Model
 {
     class AccessInfoContext : DbContext
     {
-        public DbSet<BdAccessInfoRecord> AccessInfoRecords { get; set; }
+        public DbSet<DbAccessInfoRecord> AccessInfoRecords { get; set; }
 
         public AccessInfoContext() : base("DbConnection") { }
     }

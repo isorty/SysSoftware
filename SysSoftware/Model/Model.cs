@@ -1,9 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
-using Model.FileModule;
-using Model.Analyzers;
-using Model.AssemblyFunctions;
-using Model.DataBaseModule;
 
 namespace Model
 {
@@ -18,45 +16,36 @@ namespace Model
         public DataList OpenFile(string path)
         {
             if (path.ToUpper().EndsWith(".BIN"))
-            {
-                DataList datalist = new DataList();
-                BinaryFile binaryFile = new BinaryFile();
-                datalist.Records = binaryFile.Read(path);
-                return datalist;
-            }
+                return new DataList { Records = new BinaryFile().Read(path) };
             else if (path.ToUpper().EndsWith(".JSON"))
-            {
-                DataList datalist = new DataList();
-                JSONFile jsonFile = new JSONFile();
-                datalist.Records = jsonFile.Read(path);
-                return datalist;
-            }
+                return new DataList { Records = new JSONFile().Read(path) };
             else return null;
         }
 
         public void SaveFile(string path, DataList dataList)
         {
             if (path.ToUpper().EndsWith(".BIN"))
-            {
-                BinaryFile binaryFile = new BinaryFile();
-                binaryFile.Write(path, dataList.Records);
-            }
+                new BinaryFile().Write(path, dataList.Records);
             else if (path.ToUpper().EndsWith(".JSON"))
-            {
-                JSONFile jsonFile = new JSONFile();
-                jsonFile.Write(path, dataList.Records);
-            }
+                new JSONFile().Write(path, dataList.Records);
         }
 
         public DataList GetAccessInfo()
         {
             DataList dataList = new DataList();
-            using (AccessInfoContext db = new AccessInfoContext())
+            try
             {
-                var records = db.AccessInfoRecords;
-                if (records != null)
-                    foreach (BdAccessInfoRecord record in records)
-                        dataList.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                using (AccessInfoContext db = new AccessInfoContext())
+                {
+                    var records = db.AccessInfoRecords;
+                    if (records != null)
+                        foreach (DbAccessInfoRecord record in records)
+                            dataList.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                }
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка пожключения к базе данных.");
             }
             return dataList;
         }
@@ -64,36 +53,63 @@ namespace Model
         public DataList GetFileInfo()
         {
             DataList dataList = new DataList();
-            using (FileInfoContext db = new FileInfoContext())
+            try
             {
-                var records = db.FileInfoRecords;
-                if (records != null)
-                    foreach (BdFileInfoRecord record in records)
-                        dataList.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
+                using (FileInfoContext db = new FileInfoContext())
+                {
+                    var records = db.FileInfoRecords;
+                    if (records != null)
+                        foreach (DbFileInfoRecord record in records)
+                            dataList.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
+                }
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка пожключения к базе данных.");
             }
             return dataList;
         }
 
         public void SaveAccessInfo(DataList dataList)
         {
-            using (AccessInfoContext db = new AccessInfoContext())
+            try
             {
-                if (dataList.Records != null)
-                    foreach (AccessInfoRecord record in dataList.Records)
-                        db.AccessInfoRecords.Add(new BdAccessInfoRecord(record.Login, record.HashPassword, record.Email));
-                db.SaveChanges();
+                using (AccessInfoContext db = new AccessInfoContext())
+                {
+                    if (dataList.Records != null)
+                    {
+                        db.AccessInfoRecords.RemoveRange(db.AccessInfoRecords);
+                        foreach (AccessInfoRecord record in dataList.Records)
+                            db.AccessInfoRecords.Add(new DbAccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка подключения к базе данных.");
             }
         }
 
         public void SaveFileInfo(DataList dataList)
         {
-            using (FileInfoContext db = new FileInfoContext())
+            try
             {
-                if (dataList.Records != null)
-                    foreach (FileInfoRecord record in dataList.Records)
-                        if (record != null)
-                            db.FileInfoRecords.Add(new BdFileInfoRecord(record.Path, record.Size, record.CreationDate));
-                db.SaveChanges();
+                using (FileInfoContext db = new FileInfoContext())
+                {
+                    if (dataList.Records != null)
+                    {
+                        db.FileInfoRecords.RemoveRange(db.FileInfoRecords);
+                        foreach (FileInfoRecord record in dataList.Records)
+                            if (record != null)
+                                db.FileInfoRecords.Add(new DbFileInfoRecord(record.Path, record.Size, record.CreationDate));
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка подключения к базе данных.");
             }
         }
 
@@ -111,18 +127,51 @@ namespace Model
 
         public string AnalyzeDoWhile(string construction)
         {
-            AnalyzerDoWhile analizator = new AnalyzerDoWhile(construction);
-            return analizator.AnalysisResult();
+            //AnalyzerDoWhile analizator = new AnalyzerDoWhile(construction);
+            //return analizator.AnalysisResult();
+            Analyzer_for.Analyze(construction);
+            return "Количество итераций цикла: " + Analyzer_do_while.Analyze(construction).RepeatCount.ToString();
         }
 
-        public string GetHash(string password)
+        public string GetMD5(string password)
         {
             byte[] data = MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-
             System.Text.StringBuilder sBuilder = new System.Text.StringBuilder();
             for (int i = 0; i < data.Length; i++)
                 sBuilder.Append(data[i].ToString("x2"));
             return sBuilder.ToString();
+        }
+
+        public string AssemblyCompare(params string[] values)
+        {
+            double firstValue;
+            double secondValue;
+            if (!double.TryParse(values[0], out firstValue) || !double.TryParse(values[1], out secondValue))
+                throw new InvalidInputDataException("Неверный формат данных.");
+            Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
+            Type t = asm.GetType("AssemblyModuleDLL");
+            MethodInfo method = t.GetMethod("Compare", BindingFlags.Instance | BindingFlags.Public);
+            object instance = Activator.CreateInstance(t);
+            var result = Convert.ToByte(method.Invoke(instance, new object[] { firstValue, secondValue }));
+            return result == 0 ? "≥" : "<";
+        }
+
+        public string AssemblyComplement(string valueString, int numeralSystem)
+        {
+            try
+            {
+                uint value = Convert.ToUInt32(valueString, numeralSystem);
+                Assembly asm = Assembly.Load(System.IO.File.ReadAllBytes("AssemblyModule.dll"));
+                Type t = asm.GetType("AssemblyModuleDLL");
+                MethodInfo method = t.GetMethod("Complement", BindingFlags.Instance | BindingFlags.Public);
+                object instance = Activator.CreateInstance(t);
+                var result = Convert.ToUInt32(method.Invoke(instance, new object[] { value }));
+                return Convert.ToString(result, numeralSystem).ToUpper();
+            }
+            catch
+            {
+                throw new InvalidInputDataException("Неверный формат данных.");
+            }
         }
     }
 }
