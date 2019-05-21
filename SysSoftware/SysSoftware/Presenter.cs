@@ -70,6 +70,7 @@ namespace SysSoftware
         private void ShowError(string message)
         {
             System.Windows.Forms.MessageBox.Show(message, "Ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
         }
 
         private System.Windows.Forms.DialogResult ShowWarning(string message)
@@ -166,66 +167,87 @@ namespace SysSoftware
             _view.ExportEnable(false);
         }
 
-        private void GetAccessInfo()
+        private void ImportAccessInfo()
         {
-            CheckSave();
-            IsBinaryFileOpened = false;
-            IsBdBinaryOpened = false;
-            IsJSONFileOpened = true;
-            IsBdJsonOpened = true;
-            IsSaved = false;
+            CheckSave();        
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
             bindingList.Clear();
             _view.TableClear();
-            dataList = _model.GetAccessInfo();
-            foreach (var i in dataList.Records)
-                bindingList.Add(i);
-            if (bindingList.Count > 0)
-                _view.TableUpdate(bindingList);
-            _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
-            _view.EditEnable(true);
-            _view.SaveAsEnable(true);
-            _view.CloseEnable(true);
+            try
+            {
+                dataList = _model.GetAccessInfo();
+                foreach (var i in dataList.Records)
+                    bindingList.Add(i);
+                if (bindingList.Count > 0)
+                    _view.TableUpdate(bindingList);
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
+                IsBinaryFileOpened = false;
+                IsBdBinaryOpened = false;
+                IsJSONFileOpened = true;
+                IsBdJsonOpened = true;
+                IsSaved = false;
+                _view.EditEnable(true);
+                _view.SaveAsEnable(true);
+                _view.CloseEnable(true);
+            }
+            catch (DbConnectionException e)
+            {
+                ShowError(e.Message);
+            }
         }
 
-        private void SaveInfo()
+        private void ExportData()
         {
-            if (IsBdJsonOpened | IsJSONFileOpened)
+            try
             {
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
-                _model.SaveAccessInfo(dataList);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
-                _view.ExportEnable(false);
+                if (IsBdJsonOpened | IsJSONFileOpened)
+                {
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
+                    _model.SaveAccessInfo(dataList);
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
+                    _view.ExportEnable(false);
+                }
+                else if (IsBdBinaryOpened | IsBinaryFileOpened)
+                {
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
+                    _model.SaveFileInfo(dataList);
+                    _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
+                    _view.ExportEnable(false);
+                }
             }
-            else if(IsBdBinaryOpened | IsBinaryFileOpened)
+            catch (DbConnectionException e)
             {
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
-                _model.SaveFileInfo(dataList);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
-                _view.ExportEnable(false);
+                ShowError(e.Message);
             }
         }
 
-        private void GetFileInfo()
+        private void ImportFileInfo()
         {
             CheckSave();
-            IsBinaryFileOpened = true;
-            IsBdBinaryOpened = true;
-            IsJSONFileOpened = false;
-            IsBdJsonOpened = false;
-            IsSaved = false;
-            _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
-            bindingList.Clear();
-            _view.TableClear();
-            dataList = _model.GetFileInfo();
-            foreach (var i in dataList.Records)
-                bindingList.Add(i);
-            if (bindingList.Count > 0)
-                _view.TableUpdate(bindingList);
-            _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
-            _view.EditEnable(true);
-            _view.SaveAsEnable(true);
-            _view.CloseEnable(true);
+            try
+            {
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
+                bindingList.Clear();
+                _view.TableClear();
+                dataList = _model.GetFileInfo();
+                foreach (var i in dataList.Records)
+                    bindingList.Add(i);
+                if (bindingList.Count > 0)
+                    _view.TableUpdate(bindingList);
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
+                IsBinaryFileOpened = true;
+                IsBdBinaryOpened = true;
+                IsJSONFileOpened = false;
+                IsBdJsonOpened = false;
+                IsSaved = false;
+                _view.EditEnable(true);
+                _view.SaveAsEnable(true);
+                _view.CloseEnable(true);
+            }
+            catch (DbConnectionException e)
+            {
+                ShowError(e.Message);
+            }
         }
 
         private void AddRecord()
@@ -341,7 +363,6 @@ namespace SysSoftware
             catch (InvalidInputDataException e)
             {
                 ShowError(e.Message);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
             }
         }
 
@@ -349,17 +370,17 @@ namespace SysSoftware
         {
             try
             {
-                    _view.SetCompareResult(_model.AssemblyCompare(_view.GetCompareValues()));
+                _view.SetCompareResult(_model.AssemblyCompare(_view.GetCompareValues()));
+                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершено");
+
             }
             catch (InvalidInputDataException e)
             {
                 ShowError(e.Message);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
             }
             catch (Exception e)
             {
                 ShowError(e.StackTrace);
-                _view.ChangeStatus(System.DateTime.Now.ToString() + " Вычисление завершилось ошибкой");
             }
         }
 
@@ -378,9 +399,9 @@ namespace SysSoftware
             _view.SaveFileClick += SaveFile;
             _view.SaveAsFileClick += SaveAsFile;
             _view.CloseFileClick += CloseFile;
-            _view.GetAccessInfoClick += GetAccessInfo;
-            _view.SaveInfoClick += SaveInfo;
-            _view.GetFileInfoClick += GetFileInfo;
+            _view.ImportAccessInfoClick += ImportAccessInfo;
+            _view.ExportDataClick += ExportData;
+            _view.ImportFileInfoClick += ImportFileInfo;
             _view.AddRecordClick += AddRecord;
             _view.DeleteRecordClick += DeleteRecord;
             _view.ModifyRecordClick += ModifyRecord;

@@ -34,12 +34,19 @@ namespace SysSoftware.Model
         public DataList GetAccessInfo()
         {
             DataList dataList = new DataList();
-            using (AccessInfoContext db = new AccessInfoContext())
+            try
             {
-                var records = db.AccessInfoRecords;
-                if (records != null)
-                    foreach (DbAccessInfoRecord record in records)
-                        dataList.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                using (AccessInfoContext db = new AccessInfoContext())
+                {
+                    var records = db.AccessInfoRecords;
+                    if (records != null)
+                        foreach (DbAccessInfoRecord record in records)
+                            dataList.Add(new AccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                }
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка пожключения к базе данных.");
             }
             return dataList;
         }
@@ -47,42 +54,63 @@ namespace SysSoftware.Model
         public DataList GetFileInfo()
         {
             DataList dataList = new DataList();
-            using (FileInfoContext db = new FileInfoContext())
+            try
             {
-                var records = db.FileInfoRecords;
-                if (records != null)
-                    foreach (DbFileInfoRecord record in records)
-                        dataList.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
+                using (FileInfoContext db = new FileInfoContext())
+                {
+                    var records = db.FileInfoRecords;
+                    if (records != null)
+                        foreach (DbFileInfoRecord record in records)
+                            dataList.Add(new FileInfoRecord(record.Path, record.Size, record.CreationDate));
+                }
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка пожключения к базе данных.");
             }
             return dataList;
         }
 
         public void SaveAccessInfo(DataList dataList)
         {
-            using (AccessInfoContext db = new AccessInfoContext())
+            try
             {
-                if (dataList.Records != null)
+                using (AccessInfoContext db = new AccessInfoContext())
                 {
-                    db.AccessInfoRecords.RemoveRange(db.AccessInfoRecords);
-                    foreach (AccessInfoRecord record in dataList.Records)
-                        db.AccessInfoRecords.Add(new DbAccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                    if (dataList.Records != null)
+                    {
+                        db.AccessInfoRecords.RemoveRange(db.AccessInfoRecords);
+                        foreach (AccessInfoRecord record in dataList.Records)
+                            db.AccessInfoRecords.Add(new DbAccessInfoRecord(record.Login, record.HashPassword, record.Email));
+                    }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка подключения к базе данных.");
             }
         }
 
         public void SaveFileInfo(DataList dataList)
         {
-            using (FileInfoContext db = new FileInfoContext())
+            try
             {
-                if (dataList.Records != null)
+                using (FileInfoContext db = new FileInfoContext())
                 {
-                    db.FileInfoRecords.RemoveRange(db.FileInfoRecords);
-                    foreach (FileInfoRecord record in dataList.Records)
-                        if (record != null)
-                            db.FileInfoRecords.Add(new DbFileInfoRecord(record.Path, record.Size, record.CreationDate));
+                    if (dataList.Records != null)
+                    {
+                        db.FileInfoRecords.RemoveRange(db.FileInfoRecords);
+                        foreach (FileInfoRecord record in dataList.Records)
+                            if (record != null)
+                                db.FileInfoRecords.Add(new DbFileInfoRecord(record.Path, record.Size, record.CreationDate));
+                    }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+            }
+            catch
+            {
+                throw new DbConnectionException("Ошибка подключения к базе данных.");
             }
         }
 

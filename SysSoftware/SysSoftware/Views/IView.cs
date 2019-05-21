@@ -17,11 +17,11 @@ namespace SysSoftware
 
         event Action CloseFileClick;
 
-        event Action GetAccessInfoClick;
+        event Action ImportAccessInfoClick;
 
-        event Action GetFileInfoClick;
+        event Action ImportFileInfoClick;
 
-        event Action SaveInfoClick;
+        event Action ExportDataClick;
 
         event Action AddRecordClick;
 

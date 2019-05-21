@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Exceptions\DbConnectionException.cs" />
     <Compile Include="Model\Analyzers\AnalyzerDoWhile.cs" />
     <Compile Include="Model\Analyzers\AnalysisResult.cs" />
     <Compile Include="Model\Analyzers\Analyzer_do_while.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Model\DataBaseModule\AccessInfoContext.cs" />
     <Compile Include="Model\DataBaseModule\DbFileInfoRecord.cs" />
     <Compile Include="Model\DataBaseModule\FileInfoContext.cs" />
-    <Compile Include="Exceptions\InvalidInputDataException.cs" />
+    <Compile Include="Model\Exceptions\InvalidInputDataException.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
