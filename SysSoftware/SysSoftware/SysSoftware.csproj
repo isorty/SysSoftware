@@ -118,6 +118,8 @@
     <Content Include="Resources\copy.png" />
     <Content Include="Resources\exit.png" />
     <Content Include="Resources\export.png" />
+    <None Include="Resources\eyeOpen.png" />
+    <None Include="Resources\eyeClosed.png" />
     <Content Include="Resources\import.png" />
     <Content Include="Resources\JSONnewFile.png" />
     <Content Include="Resources\JSONopenFile.png" />
