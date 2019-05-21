@@ -56,24 +56,6 @@ namespace SysSoftware
             table.Update();
         }
 
-        public void TableAddColumn(string name, int size)
-        {
-            var column = new DataGridViewColumn
-            {
-                HeaderText = name,
-                Width = size,
-                ReadOnly = true,
-                CellTemplate = new DataGridViewTextBoxCell()
-            };
-            table.Columns.Add(column);
-        }
-
-        public void TableAddRow(string[] values)
-        {
-            table.Rows.Add();
-            table.Rows[table.Rows.Count - 1].SetValues(values);
-        }
-
         public void ShowStatus()
         {
             statusBar.Visible = statusBarMenu.Checked;

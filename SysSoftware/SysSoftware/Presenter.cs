@@ -175,7 +175,7 @@ namespace SysSoftware
             _view.TableClear();
             try
             {
-                dataList = _model.GetAccessInfo();
+                dataList = _model.ImportAccessInfo();
                 foreach (var i in dataList.Records)
                     bindingList.Add(i);
                 if (bindingList.Count > 0)
@@ -203,14 +203,14 @@ namespace SysSoftware
                 if (IsBdJsonOpened | IsJSONFileOpened)
                 {
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
-                    _model.SaveAccessInfo(dataList);
+                    _model.ExportAccessInfo(dataList);
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
                     _view.ExportEnable(false);
                 }
                 else if (IsBdBinaryOpened | IsBinaryFileOpened)
                 {
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
-                    _model.SaveFileInfo(dataList);
+                    _model.ExportFileInfo(dataList);
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
                     _view.ExportEnable(false);
                 }
@@ -229,7 +229,7 @@ namespace SysSoftware
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
                 bindingList.Clear();
                 _view.TableClear();
-                dataList = _model.GetFileInfo();
+                dataList = _model.ImportFileInfo();
                 foreach (var i in dataList.Records)
                     bindingList.Add(i);
                 if (bindingList.Count > 0)

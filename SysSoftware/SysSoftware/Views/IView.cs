@@ -47,10 +47,6 @@ namespace SysSoftware
 
         void TableUpdate(BindingList<object> bindingList);
 
-        void TableAddColumn(string name, int size);
-
-        void TableAddRow(string[] values);
-
         void ShowStatus();
 
         void ChangeStatus(string status);

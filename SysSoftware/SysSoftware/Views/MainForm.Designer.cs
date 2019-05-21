@@ -304,7 +304,7 @@
             this.analizatorPage.Location = new System.Drawing.Point(4, 22);
             this.analizatorPage.Name = "analizatorPage";
             this.analizatorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.analizatorPage.Size = new System.Drawing.Size(522, 371);
+            this.analizatorPage.Size = new System.Drawing.Size(522, 405);
             this.analizatorPage.TabIndex = 0;
             this.analizatorPage.Text = "Анализатор";
             this.analizatorPage.UseVisualStyleBackColor = true;
@@ -367,7 +367,7 @@
             this.constructionTextBox.Name = "constructionTextBox";
             this.constructionTextBox.Size = new System.Drawing.Size(500, 237);
             this.constructionTextBox.TabIndex = 0;
-            this.constructionTextBox.Text = "double i = 0;\nfor ( int j = 0; j < 14; j++ )\n{\n       i = (i + 5) / 2;\n}";
+            this.constructionTextBox.Text = "double i = 0;\ndo\n{\n    i = i + 1;\n} while ( i < 7 );";
             // 
             // filePage
             // 

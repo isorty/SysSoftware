@@ -30,9 +30,10 @@ namespace Model
                 new JSONFile().Write(path, dataList.Records);
         }
 
-        public DataList GetAccessInfo()
+        public DataList ImportAccessInfo()
         {
             DataList dataList = new DataList();
+            dataList.Records = new System.Collections.Generic.List<IRecord>();
             try
             {
                 using (AccessInfoContext db = new AccessInfoContext())
@@ -50,7 +51,7 @@ namespace Model
             return dataList;
         }
 
-        public DataList GetFileInfo()
+        public DataList ImportFileInfo()
         {
             DataList dataList = new DataList();
             try
@@ -70,7 +71,7 @@ namespace Model
             return dataList;
         }
 
-        public void SaveAccessInfo(DataList dataList)
+        public void ExportAccessInfo(DataList dataList)
         {
             try
             {
@@ -91,7 +92,7 @@ namespace Model
             }
         }
 
-        public void SaveFileInfo(DataList dataList)
+        public void ExportFileInfo(DataList dataList)
         {
             try
             {
