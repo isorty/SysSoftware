@@ -36,7 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.eyeCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // okButton
@@ -110,22 +110,27 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "E-mail:";
             // 
-            // checkBox1
+            // eyeCheck
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(244, 50);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.eyeCheck.Appearance = System.Windows.Forms.Appearance.Button;
+            this.eyeCheck.AutoSize = true;
+            this.eyeCheck.FlatAppearance.BorderSize = 0;
+            this.eyeCheck.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.eyeCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eyeCheck.Image = global::SysSoftware.Properties.Resources.eyeOpen;
+            this.eyeCheck.Location = new System.Drawing.Point(243, 48);
+            this.eyeCheck.Name = "eyeCheck";
+            this.eyeCheck.Size = new System.Drawing.Size(22, 22);
+            this.eyeCheck.TabIndex = 8;
+            this.eyeCheck.UseVisualStyleBackColor = false;
+            this.eyeCheck.CheckedChanged += new System.EventHandler(this.eyeCheck_CheckedChanged);
             // 
             // NewRecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 163);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.eyeCheck);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -154,6 +159,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox eyeCheck;
     }
 }

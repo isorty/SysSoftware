@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace SysSoftware
 {
@@ -48,6 +49,21 @@ namespace SysSoftware
         private void cancelButtom_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void eyeCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (!eyeCheck.Checked)
+            {
+                passwordTextBox.PasswordChar = '•';
+                eyeCheck.Image = Image.FromFile(@"..\..\Resources\eyeOpen.png");
+            }
+            else
+            {
+                passwordTextBox.PasswordChar = (char)0;
+                eyeCheck.Image = Image.FromFile(@"..\..\Resources\eyeClosed.png");
+            }
         }
     }
 }
