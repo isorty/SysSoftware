@@ -49,10 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analyzers\AnalysisResult.cs" />
-    <Compile Include="Analyzers\AnalyzerDoWhile.cs" />
-    <Compile Include="Analyzers\Analyzer_do_while.cs" />
-    <Compile Include="Analyzers\Analyzer_for.cs" />
+    <Compile Include="AnalyzerModule\AnalysisResult.cs" />
+    <Compile Include="AnalyzerModule\AnalyzerDoWhile.cs" />
+    <Compile Include="AnalyzerModule\Analyzer_do_while.cs" />
+    <Compile Include="AnalyzerModule\Analyzer_for.cs" />
     <Compile Include="DataBaseModule\AccessInfoContext.cs" />
     <Compile Include="DataBaseModule\DbAccessInfoRecord.cs" />
     <Compile Include="DataBaseModule\DbFileInfoRecord.cs" />

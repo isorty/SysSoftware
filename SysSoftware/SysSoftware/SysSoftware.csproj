@@ -63,17 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model1\Exceptions\DbConnectionException.cs" />
-    <Compile Include="Model1\Analyzers\AnalyzerDoWhile.cs" />
-    <Compile Include="Model1\Analyzers\AnalysisResult.cs" />
-    <Compile Include="Model1\Analyzers\Analyzer_do_while.cs" />
-    <Compile Include="Model1\Analyzers\Analyzer_for.cs" />
     <Compile Include="Assembly\GenerateDLL.cs" />
-    <Compile Include="Model1\DataBaseModule\DbAccessInfoRecord.cs" />
-    <Compile Include="Model1\DataBaseModule\AccessInfoContext.cs" />
-    <Compile Include="Model1\DataBaseModule\DbFileInfoRecord.cs" />
-    <Compile Include="Model1\DataBaseModule\FileInfoContext.cs" />
-    <Compile Include="Model1\Exceptions\InvalidInputDataException.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -81,15 +71,6 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model1\FileModule\BinaryFile.cs" />
-    <Compile Include="Model1\FileModule\FileInfoRecord.cs" />
-    <Compile Include="Model1\FileModule\DataList.cs" />
-    <Compile Include="Model1\FileModule\IFile.cs" />
-    <Compile Include="Model1\IModel.cs" />
-    <Compile Include="Model1\FileModule\JSONFile.cs" />
-    <Compile Include="Model1\FileModule\AccessInfoRecord.cs" />
-    <Compile Include="Model1\FileModule\IRecord.cs" />
-    <Compile Include="Model1\Model.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
