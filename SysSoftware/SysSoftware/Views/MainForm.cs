@@ -98,7 +98,7 @@ namespace SysSoftware
 
         public void SetAnalysisResult(string result)
         {
-            analysisResultLabel.Text = result;
+            analysisResult.Text = result;
         }
 
         public void EditEnable(bool state)

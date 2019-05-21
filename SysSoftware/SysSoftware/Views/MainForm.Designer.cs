@@ -53,9 +53,9 @@
             this.aboutMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.analizatorPage = new System.Windows.Forms.TabPage();
+            this.analysisResult = new System.Windows.Forms.RichTextBox();
             this.isAnalyzerDoWhile = new System.Windows.Forms.RadioButton();
             this.isAnalyzerFor = new System.Windows.Forms.RadioButton();
-            this.analysisResultLabel = new System.Windows.Forms.Label();
             this.analyzeButton = new System.Windows.Forms.Button();
             this.constructionBox = new System.Windows.Forms.GroupBox();
             this.constructionTextBox = new System.Windows.Forms.RichTextBox();
@@ -280,7 +280,7 @@
             // aboutMenu
             // 
             this.aboutMenu.Name = "aboutMenu";
-            this.aboutMenu.Size = new System.Drawing.Size(152, 22);
+            this.aboutMenu.Size = new System.Drawing.Size(149, 22);
             this.aboutMenu.Text = "О программе";
             // 
             // mainTabControl
@@ -296,9 +296,9 @@
             // 
             // analizatorPage
             // 
+            this.analizatorPage.Controls.Add(this.analysisResult);
             this.analizatorPage.Controls.Add(this.isAnalyzerDoWhile);
             this.analizatorPage.Controls.Add(this.isAnalyzerFor);
-            this.analizatorPage.Controls.Add(this.analysisResultLabel);
             this.analizatorPage.Controls.Add(this.analyzeButton);
             this.analizatorPage.Controls.Add(this.constructionBox);
             this.analizatorPage.Location = new System.Drawing.Point(4, 22);
@@ -308,6 +308,14 @@
             this.analizatorPage.TabIndex = 0;
             this.analizatorPage.Text = "Анализатор";
             this.analizatorPage.UseVisualStyleBackColor = true;
+            // 
+            // analysisResult
+            // 
+            this.analysisResult.Location = new System.Drawing.Point(7, 306);
+            this.analysisResult.Name = "analysisResult";
+            this.analysisResult.Size = new System.Drawing.Size(507, 93);
+            this.analysisResult.TabIndex = 5;
+            this.analysisResult.Text = "";
             // 
             // isAnalyzerDoWhile
             // 
@@ -331,18 +339,9 @@
             this.isAnalyzerFor.Text = "Анализатор For";
             this.isAnalyzerFor.UseVisualStyleBackColor = true;
             // 
-            // analysisResultLabel
-            // 
-            this.analysisResultLabel.AutoSize = true;
-            this.analysisResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.analysisResultLabel.Location = new System.Drawing.Point(4, 366);
-            this.analysisResultLabel.Name = "analysisResultLabel";
-            this.analysisResultLabel.Size = new System.Drawing.Size(0, 16);
-            this.analysisResultLabel.TabIndex = 2;
-            // 
             // analyzeButton
             // 
-            this.analyzeButton.Location = new System.Drawing.Point(7, 330);
+            this.analyzeButton.Location = new System.Drawing.Point(7, 276);
             this.analyzeButton.Name = "analyzeButton";
             this.analyzeButton.Size = new System.Drawing.Size(75, 23);
             this.analyzeButton.TabIndex = 1;
@@ -354,7 +353,7 @@
             this.constructionBox.Controls.Add(this.constructionTextBox);
             this.constructionBox.Location = new System.Drawing.Point(7, 61);
             this.constructionBox.Name = "constructionBox";
-            this.constructionBox.Size = new System.Drawing.Size(513, 263);
+            this.constructionBox.Size = new System.Drawing.Size(513, 209);
             this.constructionBox.TabIndex = 0;
             this.constructionBox.TabStop = false;
             this.constructionBox.Text = "Конструкция";
@@ -365,9 +364,9 @@
             this.constructionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.constructionTextBox.Location = new System.Drawing.Point(7, 20);
             this.constructionTextBox.Name = "constructionTextBox";
-            this.constructionTextBox.Size = new System.Drawing.Size(500, 237);
+            this.constructionTextBox.Size = new System.Drawing.Size(500, 183);
             this.constructionTextBox.TabIndex = 0;
-            this.constructionTextBox.Text = "double i = 0;\ndo\n{\n    i = i + 1;\n} while ( i < 7 );";
+            this.constructionTextBox.Text = "";
             // 
             // filePage
             // 
@@ -895,7 +894,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolStripStatusLabel statusText;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Label analysisResultLabel;
         private System.Windows.Forms.RadioButton isAnalyzerDoWhile;
         private System.Windows.Forms.RadioButton isAnalyzerFor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -932,6 +930,7 @@
         private System.Windows.Forms.ToolStripButton toolModifyRecordButton;
         private System.Windows.Forms.ToolStripButton toolDeleteRecordButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.RichTextBox analysisResult;
     }
 }
 

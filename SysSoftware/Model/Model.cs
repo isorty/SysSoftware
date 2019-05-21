@@ -121,16 +121,16 @@ namespace Model
 
         public string AnalyzeFor(string construction)
         {
-            Analyzer_for.Analyze(construction);
-            return "Количество итераций цикла: " + Analyzer_for.Analyze(construction).RepeatCount.ToString();
+            //Analyzer_for.Analyze(construction);
+            return Analyzer.Analyze(construction, 0);
         }
 
         public string AnalyzeDoWhile(string construction)
         {
             //AnalyzerDoWhile analizator = new AnalyzerDoWhile(construction);
             //return analizator.AnalysisResult();
-            Analyzer_for.Analyze(construction);
-            return "Количество итераций цикла: " + Analyzer_do_while.Analyze(construction).RepeatCount.ToString();
+            //Analyzer_for.Analyze(construction);
+            return Analyzer.Analyze(construction, 1);
         }
 
         public string GetMD5(string password)
