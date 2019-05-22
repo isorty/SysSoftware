@@ -107,7 +107,7 @@ namespace SysSoftware
         {
             if (!IsSaved)
             {
-                switch (ShowWarning("Сохранить текущий файл?"))
+                switch (ShowWarning("Сохранить файл?"))
                 {
                     case System.Windows.Forms.DialogResult.Yes:
                         {

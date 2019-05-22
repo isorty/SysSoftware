@@ -4,7 +4,7 @@ using System.IO;
 namespace Model
 {
     public class BinaryFile : IFile
-    {
+    {      
         public void Write(string path, List<IRecord> dataList)
         {
             using (BinaryWriter binaryWriter = new BinaryWriter(File.Open(path, FileMode.Create)))
