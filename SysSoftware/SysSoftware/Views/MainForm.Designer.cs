@@ -433,7 +433,7 @@
             this.functionPage.Padding = new System.Windows.Forms.Padding(3);
             this.functionPage.Size = new System.Drawing.Size(522, 405);
             this.functionPage.TabIndex = 2;
-            this.functionPage.Text = "Низкоуровневая функция";
+            this.functionPage.Text = "Низкоуровневые функции";
             this.functionPage.UseVisualStyleBackColor = true;
             // 
             // compareFunctionBox
@@ -597,7 +597,6 @@
             this.complementValue.Name = "complementValue";
             this.complementValue.Size = new System.Drawing.Size(197, 20);
             this.complementValue.TabIndex = 1;
-            this.complementValue.Text = "10011001";
             // 
             // dataLabel
             // 

@@ -14,9 +14,9 @@ namespace SysSoftware
 
         private bool IsJSONFileOpened = false;
 
-        private bool IsBdBinaryOpened = false;
+        private bool IsDbBinaryOpened = false;
 
-        private bool IsBdJsonOpened = false;
+        private bool IsDbJsonOpened = false;
 
         private bool IsSaved = true;
 
@@ -144,7 +144,7 @@ namespace SysSoftware
 
         private void SaveAsFile()
         {
-            if (IsBinaryFileOpened | IsBdBinaryOpened)
+            if (IsBinaryFileOpened | IsDbBinaryOpened)
             {
                 var path = _view.GetSavePath("fileBin", "bin", "Сохранить в...");
                 if (path != null)
@@ -154,7 +154,7 @@ namespace SysSoftware
                     IsSaved = true;
                 }
             }
-            if (IsJSONFileOpened | IsBdJsonOpened)
+            if (IsJSONFileOpened | IsDbJsonOpened)
             {
                 var path = _view.GetSavePath("fileJson", "json", "Сохранить в...");
                 if (path != null)
@@ -198,9 +198,9 @@ namespace SysSoftware
                         _view.TableUpdate(bindingList);
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
                     IsBinaryFileOpened = false;
-                    IsBdBinaryOpened = false;
+                    IsDbBinaryOpened = false;
                     IsJSONFileOpened = true;
-                    IsBdJsonOpened = true;
+                    IsDbJsonOpened = true;
                     IsSaved = false;                 
                     _view.EditEnable(true);
                     _view.SaveAsEnable(true);
@@ -217,14 +217,14 @@ namespace SysSoftware
         {
             try
             {
-                if (IsBdJsonOpened | IsJSONFileOpened)
+                if (IsDbJsonOpened | IsJSONFileOpened)
                 {
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
                     _model.ExportAccessInfo(dataList);
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Экспорт в БД завершен");
                     _view.ExportEnable(false);
                 }
-                else if (IsBdBinaryOpened | IsBinaryFileOpened)
+                else if (IsDbBinaryOpened | IsBinaryFileOpened)
                 {
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Подключение к БД");
                     _model.ExportFileInfo(dataList);
@@ -255,9 +255,9 @@ namespace SysSoftware
                         _view.TableUpdate(bindingList);
                     _view.ChangeStatus(System.DateTime.Now.ToString() + " Импорт из БД завершен");
                     IsBinaryFileOpened = true;
-                    IsBdBinaryOpened = true;
+                    IsDbBinaryOpened = true;
                     IsJSONFileOpened = false;
-                    IsBdJsonOpened = false;
+                    IsDbJsonOpened = false;
                     IsSaved = false;
                     _view.EditEnable(true);
                     _view.SaveAsEnable(true);
@@ -272,13 +272,13 @@ namespace SysSoftware
 
         private void AddRecord()
         {
-            if (IsBinaryFileOpened | IsBdBinaryOpened)
+            if (IsBinaryFileOpened | IsDbBinaryOpened)
             {
                 var path = _view.GetOpenPath("Выбрать файл");
                 if (path != null)
                     AddRecordProcess(_model.GetFileInfo(path));
             }
-            if (IsJSONFileOpened | IsBdJsonOpened)
+            if (IsJSONFileOpened | IsDbJsonOpened)
             {
                 NewRecordForm newRecordForm = new NewRecordForm();
                 newRecordForm.ShowDialog();
@@ -333,13 +333,13 @@ namespace SysSoftware
             int recordNumber = _view.GetRow();
             if (recordNumber != -1)
             {
-                if (IsBinaryFileOpened | IsBdBinaryOpened)
+                if (IsBinaryFileOpened | IsDbBinaryOpened)
                 {
                     var path = _view.GetOpenPath("Выбрать файл");
                     if (path != null)
                         ModifyRecordProcess(recordNumber, _model.GetFileInfo(path));
                 }
-                if (IsJSONFileOpened | IsBdJsonOpened)
+                if (IsJSONFileOpened | IsDbJsonOpened)
                 {
                     NewRecordForm newRecordForm = new NewRecordForm();
                     newRecordForm.ShowDialog();
