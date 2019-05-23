@@ -175,7 +175,12 @@ namespace SysSoftware
                 dataList.Records.Clear();
             _view.TableClear();
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Файл закрыт");
+            IsBinaryFileOpened = false;
+            IsDbBinaryOpened = false;
+            IsDbJsonOpened = false;
+            IsJSONFileOpened = false;
             _view.EditEnable(false);
+            _view.SaveEnable(false);
             _view.SaveAsEnable(false);
             _view.CloseEnable(false);
             _view.ExportEnable(false);
@@ -300,7 +305,8 @@ namespace SysSoftware
             _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись добавлена");
             IsSaved = false;
-            _view.SaveEnable(true);
+            if (currentPath != null)
+                _view.SaveEnable(true);
             _view.ExportEnable(true);
         }
 
@@ -319,7 +325,8 @@ namespace SysSoftware
                 _view.TableUpdate(bindingList);
                 _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись удалена");
                 IsSaved = false;
-                _view.SaveEnable(true);
+                if (currentPath != null)
+                    _view.SaveEnable(true);
                 _view.ExportEnable(true);
             }
             else
@@ -362,7 +369,8 @@ namespace SysSoftware
             _view.TableUpdate(bindingList);
             _view.ChangeStatus(System.DateTime.Now.ToString() + " Запись изменена");
             IsSaved = false;
-            _view.SaveEnable(true);
+            if (currentPath != null)
+                _view.SaveEnable(true);
             _view.ExportEnable(true);
         }
 
