@@ -2,6 +2,7 @@
 
 namespace Model
 {
+    [Serializable]
     public class DbConnectionException : ApplicationException
     {
         public DbConnectionException() { }

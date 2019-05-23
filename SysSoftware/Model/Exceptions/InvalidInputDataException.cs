@@ -2,6 +2,7 @@
 
 namespace Model
 {
+    [Serializable]
     public class InvalidInputDataException : ApplicationException
     {
         public InvalidInputDataException() { }
