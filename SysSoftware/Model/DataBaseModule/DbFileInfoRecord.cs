@@ -1,6 +1,6 @@
 ﻿namespace Model
 {
-    class DbFileInfoRecord : FileInfoRecord
+    public class DbFileInfoRecord : FileInfoRecord
     {
         public int Id { get; set; }
 

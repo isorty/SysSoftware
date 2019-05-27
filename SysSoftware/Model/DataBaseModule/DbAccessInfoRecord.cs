@@ -1,6 +1,6 @@
 ﻿namespace Model
 {
-    class DbAccessInfoRecord : AccessInfoRecord
+    public class DbAccessInfoRecord : AccessInfoRecord
     {
         public int Id { get; set; }
 

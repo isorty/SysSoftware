@@ -63,8 +63,6 @@
     <Compile Include="FileModule\IFile.cs" />
     <Compile Include="FileModule\IRecord.cs" />
     <Compile Include="FileModule\JSONFile.cs" />
-    <Compile Include="IModel.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

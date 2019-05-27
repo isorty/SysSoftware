@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly\GenerateDLL.cs" />
+    <Compile Include="IModel.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>

@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    class FileInfoContext : DbContext
+    public class FileInfoContext : DbContext
     {
         public DbSet<DbFileInfoRecord> FileInfoRecords { get; set; }
 

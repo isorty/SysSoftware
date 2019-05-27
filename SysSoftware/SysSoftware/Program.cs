@@ -13,7 +13,7 @@ namespace SysSoftware
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Presenter mainPresenter = new Presenter(new MainForm(), new Model.Model());
+            Presenter mainPresenter = new Presenter(new MainForm(), new Model());
             mainPresenter.Run();
         }
     }

@@ -35,29 +35,36 @@ namespace Model
             {
                 string newCycleBody = construction.Substring(0, cycleEndPosition) + "\nrepeats++;\n" + construction.Substring(cycleEndPosition);
                 string compileCode = startCode + newCycleBody + endCode;
-                return GetCompileResult(compileCode);
+                return GetCompileResult(compileCode, form);
             }
             else
             {
                 if (form == 0)
                 {
+
                     int cycleBodyBegin = construction.IndexOf(')');
+                    string cycleBody = construction.Substring(cycleBodyBegin + 1);
+                    if (cycleBody.Trim(' ', '\n', '\t', '\r') == "")
+                        return "Синтаксическая ошибка";
                     string newCycleBody = construction.Substring(0, cycleBodyBegin + 1) + "\n{\nrepeats++;\n" + construction.Substring(cycleBodyBegin + 1) + "\n}";
                     string compileCode = startCode + newCycleBody + endCode;
-                    return GetCompileResult(compileCode);
+                    return GetCompileResult(compileCode, form);
                 }
                 else
                 {
                     int cycleBodyBegin = construction.LastIndexOf("do") + 2;
                     int cycleBodyEnd = construction.IndexOf("while");
+                    string cycleBody = construction.Substring(cycleBodyBegin, cycleBodyEnd - cycleBodyBegin).Trim(' ', '\n', '\t', '\r');
+                    if (cycleBody == "")
+                        return "Синтаксическая ошибка";
                     string newCycleBody = construction.Substring(0, cycleBodyBegin) + "\n{\nrepeats++;\n" + construction.Substring(cycleBodyBegin, cycleBodyEnd - cycleBodyBegin) + "\n}\n" + construction.Substring(cycleBodyEnd);
                     string compileCode = startCode + newCycleBody + endCode;
-                    return GetCompileResult(compileCode);
+                    return GetCompileResult(compileCode, form);
                 }
             }
         }
 
-        private static string GetCompileResult(string sourceCode)
+        private static string GetCompileResult(string sourceCode, byte form)
         {
             CodeDomProvider compiler = CodeDomProvider.CreateProvider("CSharp");
             CompilerParameters parameters = new CompilerParameters { GenerateInMemory = true, IncludeDebugInformation = false };
@@ -78,7 +85,12 @@ namespace Model
                 compileThread.Interrupt();
                 return "Выполнение цикла заняло очень длительное время (возможно бесконечный цикл)";
             }
-            return "Количество итераций цикла: " + repeatCount.ToString();
+            if (form == 0)
+                return "Количество итераций цикла: " + repeatCount.ToString();
+            else
+            {
+                return Convert.ToInt32(repeatCount) > 1 ? "Цикл выполнится более 1 раза" : "Цикл выполнится один раз";
+            }
         }
     }
 }

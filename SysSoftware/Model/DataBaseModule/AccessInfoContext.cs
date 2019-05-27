@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    class AccessInfoContext : DbContext
+    public class AccessInfoContext : DbContext
     {
         public DbSet<DbAccessInfoRecord> AccessInfoRecords { get; set; }
 
